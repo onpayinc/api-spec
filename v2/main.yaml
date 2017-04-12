@@ -14,18 +14,18 @@ produces:
  - application/json
 
 securityDefinitions:
-  OAuth2:
-    type: oauth2
-    flow: accessCode
-    authorizationUrl: https://app.onpay.com/oauth/authorize
-    tokenUrl: https://app.onpay.com/oauth/authorize
-    scopes:
-      Owner: "1"
-      Approver: "2"
-      Controller: "3"
-      Manager: "4"
-      Accountant: "5"
-      Employee: "6"
+#   OAuth2:
+#     type: oauth2
+#     flow: accessCode
+#     authorizationUrl: https://app.onpay.com/oauth/authorize
+#     tokenUrl: https://app.onpay.com/oauth/authorize
+#     scopes:
+#       Owner: "1"
+#       Approver: "2"
+#       Controller: "3"
+#       Manager: "4"
+#       Accountant: "5"
+#       Employee: "6"
       
   Bearer:
     name: Authorization
@@ -39,7 +39,7 @@ paths:
   /employees/recent-notes-and-comments:
     get:
       security:
-        - OAuth2: [Owner,Approver,Controller,Manager,Employee]
+        # - OAuth2: [Owner,Approver,Controller,Manager,Employee]
         - Bearer: []
       description: |
         Get recent notes and or comments from an employees account.
@@ -73,7 +73,7 @@ paths:
   /employees:
     get:
       security:
-        - OAuth2: [Owner, Approver]
+        # - OAuth2: [Owner, Approver]
         - Bearer: []
       description: |
         Get list of employees
@@ -106,7 +106,7 @@ paths:
   /employees/{employee_id}:
     get:
       security:
-        - OAuth2: [Owner, Approver, Controller, Manager, Employee]
+        # - OAuth2: [Owner, Approver, Controller, Manager, Employee]
         - Bearer: []
       description: |
         Get employee by employee_id
@@ -128,7 +128,7 @@ paths:
   /reports/listing:
     get:
       security:
-        - OAuth2: [Owner, Approver]
+        # - OAuth2: [Owner, Approver]
         - Bearer: []
       parameters:
         - name: company_id
