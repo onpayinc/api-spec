@@ -14,18 +14,18 @@ produces:
  - application/json
 
 securityDefinitions:
-   OAuth2:
-     type: oauth2
-     flow: accessCode
-     authorizationUrl: https://app.onpay.com/oauth/authorize
-     tokenUrl: https://app.onpay.com/oauth/authorize
-     scopes:
-       Owner: "1"
-       Approver: "2"
-       Controller: "3"
-       Manager: "4"
-       Accountant: "5"
-       Employee: "6"
+  OAuth2:
+    type: oauth2
+    flow: accessCode
+    authorizationUrl: https://app.onpay.com/oauth/authorize
+    tokenUrl: https://app.onpay.com/oauth/authorize
+    scopes:
+      Owner: "1"
+      Approver: "2"
+      Controller: "3"
+      Manager: "4"
+      Accountant: "5"
+      Employee: "6"
       
   Bearer:
     name: Authorization
