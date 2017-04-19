@@ -26,7 +26,7 @@ securityDefinitions:
       Manager: "4"
       Accountant: "5"
       Employee: "6"
-      
+
   Bearer:
     name: Authorization
     type: apiKey
@@ -48,8 +48,7 @@ paths:
         - name: company_id
           in: query
           required: true
-          type: number
-          format: integer
+          type: integer
       responses:
         200:
           description: Successful Response
@@ -81,8 +80,7 @@ paths:
         - name: company_id
           in: query
           required: true
-          type: number
-          format: integer
+          type: integer
       responses:
         200:
           description: Sucessful Response
@@ -125,6 +123,87 @@ paths:
           schema:
             $ref: '#/definitions/ErrorBadRequest'
 
+  /employees/{employee_id}/deductions:
+    get:
+      security:
+        # - OAuth2: [Owner,Approver,Controller,Manager,Employee]
+        - Bearer: []
+      description: |
+        Get deductions for an employee.
+
+      parameters:
+        - name: company_id
+          in: query
+          required: true
+          type: integer
+        - name: employee_id
+          in: path
+          required: true
+          type: integer
+      responses:
+        200:
+          description: Successful response
+          schema:
+            type: object
+            properties:
+              associated:
+                description: Group of deductions that employee is currently or has been associated with
+                type: array
+                items:
+                  $ref: '#/definitions/EmployeeDeductionItem'
+        default:
+          description: 'Bad Request'
+          schema:
+            $ref: '#/definitions/ErrorBadRequest'
+
+  /company:
+    get:
+      security:
+        - Bearer: []
+      description: |
+        Get company information
+
+      parameters:
+        - name: company_id
+          required: true
+          in: query
+          type: integer
+
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: '#/definitions/Company'
+        default:
+          description: 'Bad Request'
+          schema:
+            $ref: '#/definitions/ErrorBadRequest'
+
+  /company/deductions:
+    get:
+      security:
+        - Bearer: []
+      description: |
+        Get all deductions for company
+
+      parameters:
+        - name: company_id
+          required: true
+          in: query
+          type: integer
+
+      responses:
+        200:
+          description: successful resopnse
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/EmployeeDeductionItem'
+        default:
+          description: 'Bad Request'
+          schema:
+            $ref: '#/definitions/ErrorBadRequest'
+
   /reports/listing:
     get:
       security:
@@ -134,8 +213,7 @@ paths:
         - name: company_id
           in: query
           required: true
-          type: number
-          format: integer
+          type: integer
         - name: from
           in: query
           required: true
@@ -147,13 +225,11 @@ paths:
         - name: limit
           in: query
           required: true
-          type: number
-          format: integer
+          type: integer
         - name: start
           in: query
           required: true
-          type: number
-          format: integer
+          type: integer
         - name: employee_ids
           in: query
           required: false
@@ -162,18 +238,15 @@ paths:
         - name: position_id
           in: query
           required: false
-          type: number
-          format: integer
+          type: integer
         - name: department_id
           in: query
           required: false
-          type: number
-          format: integer
+          type: integer
         - name: location_id
           in: query
           required: false
-          type: number
-          format: integer
+          type: integer
 
       responses:
         200:
@@ -186,6 +259,42 @@ paths:
 
 
 definitions:
+  Company:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      dba:
+        type: string
+      address:
+        type: string
+      address_2:
+        type: string
+      city:
+        type: string
+      state:
+        type: string
+      zip:
+        type: integer
+      email:
+        type: string
+      contact_name:
+        type: string
+      contact_number:
+        type: string
+      company_number:
+        type: string
+      mail_address:
+        type: string
+      mail_address_2:
+        type: string
+      mail_city:
+        type: string
+      mail_zip:
+        type: integer
+
   EmployeeNote:
     type: object
     properties:
@@ -567,6 +676,111 @@ definitions:
       available:
         type: number
 
+  DeductionType:
+    type: integer
+    description: |
+      1 Section 125
+      2 401K
+      3 403B
+      4 457
+      6 Roth 401K
+      7 Roth 403B
+      8 FSA
+      9 HSA
+      10 Simple IRA
+      21 Post-tax
+      22 Cash tips imputed
+      23 Union dues
+      24 Imputed
+      25 Union dues based on hours
+      102 Section 132
+    enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      - 21
+      - 22
+      - 23
+      - 24
+      - 25
+      - 102
+
+  EmployeeDeductionItem:
+    type: object
+    properties:
+      id:
+        type: integer
+      type:
+        $ref: '#/definitions/DeductionType'
+      name:
+        type: string
+      annual_limit:
+        type: number
+      treat_as_401k_loan:
+        type: boolean
+      company_match_percent:
+        type: number
+      company_mathc_percent_of_gross:
+        type: number
+      company_match_percent_2:
+        type: number
+      company_match_percent_of_gross_2:
+        type: number
+      ignore_defferal:
+        type: boolean
+      version:
+        type: string
+      batch:
+        $ref: '#/definitions/EmployeeDeductionItemBatch'
+
+  EmployeeDeductionItemBatch:
+    type: object
+    properties:
+      id:
+        type: integer
+      employee_id:
+        type: integer
+      employee_number:
+        type: string
+      deduction_type:
+        $ref: '#/definitions/DeductionType'
+      deduction_id:
+        type: integer
+      percent:
+        type: number
+      annual_limit:
+        type: number
+      amount:
+        type: number
+      override_amount:
+        type: number
+      active:
+        type: boolean
+      ach_active:
+        type: boolean
+      routing:
+        type: integer
+      account:
+        type: integer
+      savings:
+        type: boolean
+      memo:
+        type: string
+      include_match_with_ach_deposit:
+        type: boolean
+      override_company_benefit_amount:
+        type: number
+      lifetime_limit:
+        type: number
+      version:
+        type: string
+
   ErrorBadRequest:
     type: object
     properties:
@@ -576,4 +790,3 @@ definitions:
       message:
         type: string
         description: "error message"
-
