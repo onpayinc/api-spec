@@ -102,17 +102,17 @@ paths:
             $ref: '#/definitions/ErrorBadRequest'
 
   /employees/{employee_id}:
+    parameters:
+      - name: employee_id
+        type: integer
+        required: true
+        in: path
     get:
       security:
         # - OAuth2: [Owner, Approver, Controller, Manager, Employee]
         - Bearer: []
       description: |
         Get employee by employee_id
-      parameters:
-        - name: employee_id
-          type: integer
-          required: true
-          in: path
       responses:
         200:
           description: "Successful response"
@@ -120,6 +120,26 @@ paths:
             $ref: '#/definitions/Employee'
         default:
           description: 'Bad Request'
+          schema:
+            $ref: '#/definitions/ErrorBadRequest'
+    patch:
+      security:
+        - Bearer: []
+      description: |
+        Update an employee
+      parameters:
+        - name: properties
+          description: "JSON Merge Patch [RFC 7396]"
+          schema:
+            $ref: '#/definitions/Employee'
+          in: body
+      responses:
+        200:
+          description: Successful resopnse
+          schema:
+            $ref: '#/definitions/PatchSuccessful'
+        default:
+          description: Bad Request
           schema:
             $ref: '#/definitions/ErrorBadRequest'
 
@@ -780,6 +800,13 @@ definitions:
         type: number
       version:
         type: string
+
+  PatchSuccessful:
+    type: object
+    properties:
+      version:
+        type: string
+        description: new version
 
   ErrorBadRequest:
     type: object
