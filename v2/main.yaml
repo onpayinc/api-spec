@@ -17,8 +17,8 @@ securityDefinitions:
   OAuth2:
     type: oauth2
     flow: accessCode
-    authorizationUrl: https://app.onpay.com/oauth/authorize
-    tokenUrl: https://app.onpay.com/oauth/authorize
+    authorizationUrl: https://app.onpay.com/app/oauth/authorize
+    tokenUrl: https://app.onpay.com/app/oauth/authorize
     scopes:
       Owner: "1"
       Approver: "2"
@@ -38,17 +38,14 @@ paths:
 
   /employees/recent-notes-and-comments:
     get:
+      tags:
+        - Employees
       security:
         # - OAuth2: [Owner,Approver,Controller,Manager,Employee]
         - Bearer: []
       description: |
         Get recent notes and or comments from an employees account.
 
-      parameters:
-        - name: company_id
-          in: query
-          required: true
-          type: integer
       responses:
         200:
           description: Successful Response
@@ -71,16 +68,13 @@ paths:
 
   /employees:
     get:
+      tags:
+        - Employees
       security:
         # - OAuth2: [Owner, Approver]
         - Bearer: []
       description: |
         Get list of employees
-      parameters:
-        - name: company_id
-          in: query
-          required: true
-          type: integer
       responses:
         200:
           description: Sucessful Response
@@ -108,6 +102,8 @@ paths:
         required: true
         in: path
     get:
+      tags:
+        - Employees
       security:
         # - OAuth2: [Owner, Approver, Controller, Manager, Employee]
         - Bearer: []
@@ -123,6 +119,8 @@ paths:
           schema:
             $ref: '#/definitions/ErrorBadRequest'
     patch:
+      tags:
+        - Employees
       security:
         - Bearer: []
       description: |
@@ -145,6 +143,9 @@ paths:
 
   /employees/{employee_id}/deductions:
     get:
+      tags:
+        - Employees
+        - Deductions
       security:
         # - OAuth2: [Owner,Approver,Controller,Manager,Employee]
         - Bearer: []
@@ -152,10 +153,6 @@ paths:
         Get deductions for an employee.
 
       parameters:
-        - name: company_id
-          in: query
-          required: true
-          type: integer
         - name: employee_id
           in: path
           required: true
@@ -176,18 +173,43 @@ paths:
           schema:
             $ref: '#/definitions/ErrorBadRequest'
 
+  /employees/{employee_id}/deductions/{deduction_id}:
+    parameters:
+      - name: employee_id
+        type: integer
+        in: path
+        required: true
+      - name: deduction_id
+        type: integer
+        in: path
+        required: true
+
+    patch:
+      tags:
+        - Employee
+        - Deductions
+      security:
+        - Bearer: []
+      description: |
+        update employee deduction batch by employee id and deduction id
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            $ref: '#/definitions/PatchSuccessful'
+        default:
+          description: 'Bad Request'
+          schema:
+            $ref: '#/definitions/ErrorBadRequest'
+
   /company:
     get:
+      tags:
+        - Company
       security:
         - Bearer: []
       description: |
         Get company information
-
-      parameters:
-        - name: company_id
-          required: true
-          in: query
-          type: integer
 
       responses:
         200:
@@ -201,16 +223,13 @@ paths:
 
   /company/deductions:
     get:
+      tags:
+        - Company
+        - Deductions
       security:
         - Bearer: []
       description: |
         Get all deductions for company
-
-      parameters:
-        - name: company_id
-          required: true
-          in: query
-          type: integer
 
       responses:
         200:
@@ -224,8 +243,291 @@ paths:
           schema:
             $ref: '#/definitions/ErrorBadRequest'
 
+    post:
+      tags:
+        - Company
+        - Deductions
+      security:
+        - Bearer: []
+      description: |
+        create a new deduction
+      parameters:
+        - name: properties
+          description: ""
+          schema:
+            $ref: '#/definitions/DeductionListItem'
+          in: body
+
+      responses:
+        200:
+          description: successful response
+          schema:
+            $ref: '#/definitions/InsertSuccessful'
+        default:
+          description: 'Bad Request'
+          schema:
+            $ref: '#/definitions/ErrorBadRequest'
+
+  /company/pay-schedules:
+    get:
+      tags:
+        - Company
+      security:
+        - Bearer: []
+      description: |
+        list pay scheduls for company
+
+      responses:
+        200:
+          description: successful response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/PaySchedule'
+        default:
+          description: 'Bad Request'
+          schema:
+            $ref: '#/definitions/ErrorBadRequest'
+
+  /company/deductions/{deduction_id}:
+    parameters:
+      - name: deduction_id
+        required: true
+        type: integer
+        in: path
+    patch:
+      tags:
+        - Company
+        - Deductions
+      security:
+        - Bearer: []
+      description: |
+        Patch deduction
+      parameters:
+        - name: properties
+          description: "JSON Merge Patch [RFC 7396]"
+          schema:
+            $ref: '#/definitions/DeductionListItem'
+          in: body
+      responses:
+        200:
+          description: successful response
+          schema:
+            $ref: '#/definitions/PatchSuccessful'
+        default:
+          description: 'Bad Request'
+          schema:
+            $ref: '#/definitions/ErrorBadRequest'
+    delete:
+      tags:
+        - Company
+        - Deductions
+      security:
+        - Bearer: []
+      description: |
+        Delete deduction by Id.
+
+      responses:
+        200:
+          description: successful response
+          schema:
+            $ref: '#/definitions/DeleteSuccessful'
+        default:
+          description: 'Bad Request'
+          schema:
+            $ref: '#/definitions/ErrorBadRequest'
+
+  /company/deduction-groupings:
+    get:
+      tags:
+        - Company
+        - Deductions
+      security:
+        - Bearer: []
+      responses:
+        200:
+          description: |
+            Sucessful Response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/DeductionGroupingItem'
+        default:
+          description: 'Bad Request'
+          schema:
+            $ref: '#/definitions/ErrorBadRequest'
+    post:
+      tags:
+        - Company
+        - Deductions
+      security:
+        - Bearer: []
+      parameters:
+        - name: properties
+          description: "JSON Merge Patch [RFC 7396]"
+          schema:
+            $ref: '#/definitions/DeductionGroupingItem'
+          in: body
+      responses:
+        200:
+          description: |
+            Sucessful Response
+          schema:
+            $ref: '#/definitions/InsertSuccessful'
+        default:
+          description: 'Bad Request'
+          schema:
+            $ref: '#/definitions/ErrorBadRequest'
+
+  /company/deduction-groupings/{id}:
+    parameters:
+      - name: id
+        required: true
+        type: integer
+        in: path
+    patch:
+      tags:
+        - Company
+        - Deductions
+      security:
+        - Bearer: []
+      parameters:
+        - name: properties
+          description: "JSON Merge Patch [RFC 7396]"
+          schema:
+            $ref: '#/definitions/DeductionGroupingItem'
+          in: body
+      responses:
+        200:
+          description: |
+            Sucessful Response
+          schema:
+            $ref: '#/definitions/PatchSuccessful'
+        default:
+          description: 'Bad Request'
+          schema:
+            $ref: '#/definitions/ErrorBadRequest'
+
+  /company/locations:
+    get:
+      tags:
+        - Company
+      security:
+        - Bearer: []
+      responses:
+        200:
+          description: |
+            Sucessful Response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/LocationItem'
+        default:
+          description: 'Bad Request'
+          schema:
+            $ref: '#/definitions/ErrorBadRequest'
+
+  /company/locations/{id}:
+    parameters:
+      - name: id
+        type: integer
+        required: true
+        in: path
+    get:
+      tags:
+        - Company
+      security:
+        - Bearer: []
+      responses:
+        200:
+          description: |
+            Sucessful Response
+          schema:
+            $ref: '#/definitions/LocationItem'
+
+  /company/departments:
+    get:
+      tags:
+        - Company
+      security:
+        - Bearer: []
+      responses:
+        200:
+          description: |
+            Sucessful Response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/DepartmentItem'
+
+  /company/departments/{id}:
+    parameters:
+      - name: id
+        type: integer
+        required: true
+        in: path
+    get:
+      tags:
+        - Company
+      security:
+        - Bearer: []
+      responses:
+        200:
+          description: |
+            Sucessful Response
+          schema:
+            $ref: '#/definitions/DepartmentItem'
+
+  /company/positions:
+    get:
+      tags:
+        - Company
+      security:
+        - Bearer: []
+      responses:
+        200:
+          description: |
+            Sucessful Response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/PositionItem'
+
+  /company/positions/{id}:
+    parameters:
+      - name: id
+        type: integer
+        required: true
+        in: path
+    get:
+      tags:
+        - Company
+      security:
+        - Bearer: []
+      responses:
+        200:
+          description: |
+            Sucessful Response
+          schema:
+            $ref: '#/definitions/PositionItem'
+
+  /user:
+    get:
+      tags:
+        - User
+      security:
+        - Bearer: []
+      responses:
+        200:
+          description: |
+            Sucessful Response
+          schema:
+            $ref: '#/definitions/UserItem'
+
   /reports/listing:
     get:
+      tags:
+        - Reports
       security:
         # - OAuth2: [Owner, Approver]
         - Bearer: []
@@ -278,6 +580,54 @@ paths:
               $ref: '#/definitions/PayrollCheck'
 
 
+  /reports/pagination/listing:
+    get:
+      tags:
+        - Reports
+      security:
+        # - OAuth2: [Owner, Approver]
+        - Bearer: []
+      parameters:
+        - name: company_id
+          in: query
+          required: true
+          type: integer
+        - name: from
+          in: query
+          required: true
+          type: string
+        - name: to
+          in: query
+          required: true
+          type: string
+        - name: employee_ids
+          in: query
+          required: false
+          type: string
+          format: csv
+        - name: position_id
+          in: query
+          required: false
+          type: integer
+        - name: department_id
+          in: query
+          required: false
+          type: integer
+        - name: location_id
+          in: query
+          required: false
+          type: integer
+
+      responses:
+        200:
+          description: |
+            Sucessful Response
+          schema:
+            type: object
+            properties:
+              count:
+                type: integer
+
 definitions:
   Company:
     type: object
@@ -314,6 +664,22 @@ definitions:
         type: string
       mail_zip:
         type: integer
+
+  PaySchedule:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      frequency:
+        type: integer
+      check_date:
+        type: string
+      period_start:
+        type: string
+      period_end:
+        type: string
 
   EmployeeNote:
     type: object
@@ -399,7 +765,7 @@ definitions:
         type: string
       pay_schedule_id:
         type: integer
-      status:
+      employment_status:
         type: integer
         enum:
           - 0
@@ -661,6 +1027,8 @@ definitions:
         type: string
       benefit_amount:
         type: number
+      nonelective_portion_of_benefit:
+        type: number
       is_garnishment:
         type: boolean
 
@@ -670,6 +1038,8 @@ definitions:
       name:
         type: string
       amount:
+        type: number
+      nonelective_portion_of_benefit:
         type: number
       ytd:
         type: number
@@ -746,7 +1116,7 @@ definitions:
         type: boolean
       company_match_percent:
         type: number
-      company_mathc_percent_of_gross:
+      company_match_percent_of_gross:
         type: number
       company_match_percent_2:
         type: number
@@ -754,6 +1124,10 @@ definitions:
         type: number
       ignore_defferal:
         type: boolean
+      nonelective_percent_of_gross:
+        type: number
+      grouping_id:
+        type: integer
       version:
         type: string
       batch:
@@ -792,12 +1166,72 @@ definitions:
         type: boolean
       memo:
         type: string
-      include_match_with_ach_deposit:
+      include_benefit_amount_in_ach:
         type: boolean
       override_company_benefit_amount:
         type: number
       lifetime_limit:
         type: number
+      version:
+        type: string
+
+  DeductionGroupingItem:
+    type: object
+    properties:
+      id:
+        type: integer
+      nonelective_cap:
+        type: number
+      company_match_percent_cap:
+        type: number
+      company_match_percent_of_gross_cap:
+        type: number
+      company_match_percent_2_cap:
+        type: number
+      company_match_percent_of_gross_2_cap:
+        type: number
+      version:
+        type: string
+
+  UserItem:
+    type: object
+    properties:
+      id:
+        type: integer
+      first_name:
+        type: string
+      last_name:
+        type: string
+      email:
+        type: string
+
+  DepartmentItem:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      version:
+        type: string
+
+  LocationItem:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      version:
+        type: string
+
+  PositionItem:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
       version:
         type: string
 
@@ -807,6 +1241,23 @@ definitions:
       version:
         type: string
         description: new version
+
+  InsertSuccessful:
+    type: object
+    properties:
+      version:
+        type: string
+        description: new version
+      id:
+        type: integer
+        description: id of inserted object
+
+  DeleteSuccessful:
+    type: object
+    properties:
+      deleted_id:
+        type: integer
+        description: id of deleted object
 
   ErrorBadRequest:
     type: object
