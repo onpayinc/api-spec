@@ -628,6 +628,34 @@ paths:
               count:
                 type: integer
 
+  /approved-pay-runs:
+    get:
+      tags:
+        - Pay-runs
+      security:
+        - Bearer: []
+      parameters:
+        - name: from
+          in: query
+          required: true
+          type: string
+        - name: to
+          in: query
+          required: true
+          type: string
+        - name: runid
+          in: query
+          required: false
+          type: integer
+      responses:
+        200:
+          description: |
+            Sucessful Response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ApprovedPayRunsItem'
+
 definitions:
   Company:
     type: object
@@ -1234,6 +1262,38 @@ definitions:
         type: string
       version:
         type: string
+
+  ApprovedPayRunsItem:
+    type: object
+    properties:
+      runid:
+        type: integer
+      check_date:
+        type: string
+      timestamp:
+        type: string
+      period_start:
+        type: string
+      period_end:
+        type: string
+      user_id:
+        type: integer
+      tax_sweep_date:
+        type: string
+      tax_sweep_amount:
+        type: number
+      direct_deposit_sweep_date:
+        type: string
+      direct_deposit_sweep_amount:
+        type: number
+      direct_despoit_date:
+        type: string
+      direct_deposit_amount:
+        type: number
+      total_wages:
+        type: number
+      total_cash_requirement:
+        type: number
 
   PatchSuccessful:
     type: object
