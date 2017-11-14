@@ -236,6 +236,8 @@ paths:
                 type: string
               order:
                 type: integer
+              savings:
+                type: boolean
 
   /company:
     get:
