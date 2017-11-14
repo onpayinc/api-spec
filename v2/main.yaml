@@ -186,7 +186,7 @@ paths:
 
     patch:
       tags:
-        - Employee
+        - Employees
         - Deductions
       security:
         - Bearer: []
@@ -510,6 +510,23 @@ paths:
             Sucessful Response
           schema:
             $ref: '#/definitions/PositionItem'
+    patch:
+      tags:
+        - Company
+      parameters:
+        - name: properties
+          description: "JSON Merge Patch [RFC 7396]"
+          schema:
+            $ref: '#/definitions/PositionItem'
+          in: body
+      security:
+          - Bearer: []
+      responses:
+        200:
+          description: |
+            Sucessful Response
+          schema:
+            $ref: '#/definitions/PatchSuccessful'
 
   /user:
     get:
