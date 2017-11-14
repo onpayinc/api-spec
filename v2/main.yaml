@@ -41,7 +41,7 @@ paths:
       tags:
         - Employees
       security:
-        - OAuth2: [Owner,Approver,Controller,Manager,Employee]
+        - OAuth2: [Owner,Approver,Controller,Manager]
        # - Bearer: []
       description: |
         Get recent notes and or comments from an employees account.
@@ -71,8 +71,8 @@ paths:
       tags:
         - Employees
       security:
-        # - OAuth2: [Owner, Approver]
-        - Bearer: []
+        - OAuth2: [Owner, Approver]
+        #- Bearer: []
       description: |
         Get list of employees
       responses:
@@ -105,8 +105,8 @@ paths:
       tags:
         - Employees
       security:
-        # - OAuth2: [Owner, Approver, Controller, Manager, Employee]
-        - Bearer: []
+        - OAuth2: [Owner, Approver]
+        #- Bearer: []
       description: |
         Get employee by employee_id
       responses:
@@ -122,7 +122,8 @@ paths:
       tags:
         - Employees
       security:
-        - Bearer: []
+        - OAuth2: [Owner, Approver]
+        #- Bearer: []
       description: |
         Update an employee
       parameters:
@@ -147,8 +148,8 @@ paths:
         - Employees
         - Deductions
       security:
-        # - OAuth2: [Owner,Approver,Controller,Manager,Employee]
-        - Bearer: []
+        - OAuth2: [Owner,Approver,Controller,Manager,Employee]
+        #- Bearer: []
       description: |
         Get deductions for an employee.
 
@@ -189,7 +190,8 @@ paths:
         - Employees
         - Deductions
       security:
-        - Bearer: []
+        - OAuth2: [Owner, Approver]
+        #- Bearer: []
       description: |
         update employee deduction batch by employee id and deduction id
       responses:
@@ -207,7 +209,8 @@ paths:
       tags:
         - Company
       security:
-        - Bearer: []
+        - OAuth2: [Owner, Approver]
+        #- Bearer: []
       description: |
         Get company information
 
@@ -227,7 +230,8 @@ paths:
         - Company
         - Deductions
       security:
-        - Bearer: []
+        - OAuth2: [Owner, Approver]
+        #- Bearer: []
       description: |
         Get all deductions for company
 
@@ -248,7 +252,8 @@ paths:
         - Company
         - Deductions
       security:
-        - Bearer: []
+        - OAuth2: [Owner, Approver]
+        #- Bearer: []
       description: |
         create a new deduction
       parameters:
@@ -273,7 +278,8 @@ paths:
       tags:
         - Company
       security:
-        - Bearer: []
+        - OAuth2: [Owner, Approver]
+        #- Bearer: []
       description: |
         list pay scheduls for company
 
@@ -300,7 +306,8 @@ paths:
         - Company
         - Deductions
       security:
-        - Bearer: []
+        - OAuth2: [Owner, Approver]
+        #- Bearer: []
       description: |
         Patch deduction
       parameters:
@@ -323,7 +330,8 @@ paths:
         - Company
         - Deductions
       security:
-        - Bearer: []
+        - OAuth2: [Owner, Approver]
+        #- Bearer: []
       description: |
         Delete deduction by Id.
 
@@ -343,7 +351,8 @@ paths:
         - Company
         - Deductions
       security:
-        - Bearer: []
+        - OAuth2: [Owner, Approver]
+        #- Bearer: []
       responses:
         200:
           description: |
@@ -361,7 +370,8 @@ paths:
         - Company
         - Deductions
       security:
-        - Bearer: []
+        - OAuth2: [Owner, Approver]
+        #- Bearer: []
       parameters:
         - name: properties
           description: "JSON Merge Patch [RFC 7396]"
@@ -390,7 +400,8 @@ paths:
         - Company
         - Deductions
       security:
-        - Bearer: []
+        - OAuth2: [Owner, Approver]
+        #- Bearer: []
       parameters:
         - name: properties
           description: "JSON Merge Patch [RFC 7396]"
@@ -413,7 +424,8 @@ paths:
       tags:
         - Company
       security:
-        - Bearer: []
+        - OAuth2: [Owner, Approver]
+        #- Bearer: []
       responses:
         200:
           description: |
@@ -437,7 +449,8 @@ paths:
       tags:
         - Company
       security:
-        - Bearer: []
+        - OAuth2: [Owner, Approver]
+        #- Bearer: []
       responses:
         200:
           description: |
@@ -450,7 +463,8 @@ paths:
       tags:
         - Company
       security:
-        - Bearer: []
+        - OAuth2: [Owner, Approver]
+        #- Bearer: []
       responses:
         200:
           description: |
@@ -470,7 +484,8 @@ paths:
       tags:
         - Company
       security:
-        - Bearer: []
+        - OAuth2: [Owner, Approver]
+        #- Bearer: []
       responses:
         200:
           description: |
@@ -483,7 +498,8 @@ paths:
       tags:
         - Company
       security:
-        - Bearer: []
+        - OAuth2: [Owner, Approver]
+        #- Bearer: []
       responses:
         200:
           description: |
@@ -503,7 +519,8 @@ paths:
       tags:
         - Company
       security:
-        - Bearer: []
+        - OAuth2: [Owner, Approver]
+        #- Bearer: []
       responses:
         200:
           description: |
@@ -520,7 +537,8 @@ paths:
             $ref: '#/definitions/PositionItem'
           in: body
       security:
-          - Bearer: []
+        - OAuth2: [Owner, Approver]
+        #- Bearer: []
       responses:
         200:
           description: |
@@ -533,7 +551,8 @@ paths:
       tags:
         - User
       security:
-        - Bearer: []
+        - OAuth2: [Owner, Approver, Controller, Manager, Employee]
+        #- Bearer: []
       responses:
         200:
           description: |
@@ -546,8 +565,8 @@ paths:
       tags:
         - Reports
       security:
-        # - OAuth2: [Owner, Approver]
-        - Bearer: []
+        - OAuth2: [Owner, Approver]
+        #- Bearer: []
       parameters:
         - name: company_id
           in: query
@@ -602,8 +621,8 @@ paths:
       tags:
         - Reports
       security:
-        # - OAuth2: [Owner, Approver]
-        - Bearer: []
+        - OAuth2: [Owner, Approver]
+        #- Bearer: []
       parameters:
         - name: company_id
           in: query
@@ -650,7 +669,8 @@ paths:
       tags:
         - Pay-runs
       security:
-        - Bearer: []
+        - OAuth2: [Owner, Approver]
+        #- Bearer: []
       parameters:
         - name: from
           in: query
