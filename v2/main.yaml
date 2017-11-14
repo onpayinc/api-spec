@@ -745,6 +745,10 @@ definitions:
         type: string
       period_end:
         type: string
+      submission_deadline:
+        type: string
+      version:
+        type: string
 
   EmployeeNote:
     type: object
