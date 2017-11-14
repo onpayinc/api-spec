@@ -41,8 +41,8 @@ paths:
       tags:
         - Employees
       security:
-        # - OAuth2: [Owner,Approver,Controller,Manager,Employee]
-        - Bearer: []
+        - OAuth2: [Owner,Approver,Controller,Manager,Employee]
+       # - Bearer: []
       description: |
         Get recent notes and or comments from an employees account.
 
