@@ -204,6 +204,39 @@ paths:
           schema:
             $ref: '#/definitions/ErrorBadRequest'
 
+  /employees/{employee_id}/bank-accounts:
+    parameters:
+      - name: employee_id
+        type: integer
+        in: path
+        required: true
+
+    get:
+      tags:
+        - Employees
+      security:
+        - OAuth2: [Owner, Approver]
+      description: |
+        list employee bank accounts
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            type: object
+            properties:
+              id:
+                type: integer
+              account:
+                type: string
+              routing:
+                type: string
+              amount:
+                type: string
+              percent:
+                type: string
+              order:
+                type: integer
+
   /company:
     get:
       tags:
