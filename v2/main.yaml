@@ -263,19 +263,19 @@ paths:
         - Employees
       security:
        - OAuth2: [Owner, Approver]
-     description: List employee pay items
-     responses:
-      200:
-        description: Sucessful Response
-        schema:
-          type: object
-          properties:
-            pay_items:
-              type: array
-              items:
-                $ref: '#/definitions/PayItem'
-            version:
-              type: string
+      description: List employee pay items
+      responses:
+        200:
+          description: Sucessful Response
+          schema:
+            type: object
+            properties:
+              pay_items:
+                type: array
+                items:
+                  $ref: '#/definitions/PayItem'
+              version:
+                type: string
 
   /company:
     get:
