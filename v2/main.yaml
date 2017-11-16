@@ -151,7 +151,7 @@ paths:
         - OAuth2: [Owner,Approver,Controller,Manager,Employee]
         #- Bearer: []
       description: |
-        Get deductions for an employee.
+        Get deductions for an employee
 
       parameters:
         - name: employee_id
@@ -193,7 +193,7 @@ paths:
         - OAuth2: [Owner, Approver]
         #- Bearer: []
       description: |
-        update employee deduction batch by employee id and deduction id
+        Update an employee deduction batch by employee ID and deduction ID
       responses:
         200:
           description: Successful Response
@@ -203,6 +203,19 @@ paths:
           description: 'Bad Request'
           schema:
             $ref: '#/definitions/ErrorBadRequest'
+
+    post:
+      tags:
+        - Employees
+        - Deductions
+      security:
+       - OAuth2: [Owner, Approver]
+
+      description: |
+        Insert deduction batch for an employee by employee ID and deduction ID
+
+      responses:
+        200:
 
   /employees/{employee_id}/bank-accounts:
     parameters:
@@ -238,6 +251,31 @@ paths:
                 type: integer
               savings:
                 type: boolean
+
+  /employees/{employee_id}/wages:
+    parameters:
+      - name: employee_id
+        type: integer
+        required: true
+        in: path
+    get:
+      tags:
+        - Employees
+      security:
+       - OAuth2: [Owner, Approver]
+     description: List employee pay items
+     responses:
+      200:
+        description: Sucessful Response
+        schema:
+          type: object
+          properties:
+            pay_items:
+              type: array
+              items:
+                $ref: '#/definitions/PayItem'
+            version:
+              type: string
 
   /company:
     get:
@@ -454,26 +492,6 @@ paths:
           schema:
             $ref: '#/definitions/ErrorBadRequest'
 
-  /company/locations:
-    get:
-      tags:
-        - Company
-      security:
-        - OAuth2: [Owner, Approver]
-        #- Bearer: []
-      responses:
-        200:
-          description: |
-            Sucessful Response
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/LocationItem'
-        default:
-          description: 'Bad Request'
-          schema:
-            $ref: '#/definitions/ErrorBadRequest'
-
   /company/worksites:
     get:
       tags:
@@ -505,6 +523,46 @@ paths:
           schema:
             $ref: '#/definitions/WorksiteItem'
 
+  /company/locations:
+    get:
+      tags:
+        - Company
+      security:
+        - OAuth2: [Owner, Approver]
+        #- Bearer: []
+      responses:
+        200:
+          description: |
+            Sucessful Response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/LocationItem'
+        default:
+          description: 'Bad Request'
+          schema:
+            $ref: '#/definitions/ErrorBadRequest'
+    post:
+      tags:
+        - Company
+      security:
+        - OAuth2: [Owner, Approver]
+      parameters:
+        - name: properties
+          description: "JSON Merge Patch [RFC 7396]"
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+          in: body
+      responses:
+        200:
+          description: Sucessful Response
+          schema:
+            $ref: '#/definitions/InsertSuccessful'
+
+
   /company/locations/{id}:
     parameters:
       - name: id
@@ -523,6 +581,29 @@ paths:
             Sucessful Response
           schema:
             $ref: '#/definitions/LocationItem'
+    patch:
+      tags:
+        - Company
+      security:
+        - OAuth2: [Owner, Approver]
+      parameters:
+        - name: properties
+          description: "JSON Merge Patch [RFC 7396]"
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                required: true
+              version:
+                type: string
+                required: true
+          in: body
+      responses:
+        200:
+          description: Sucessful Response
+          schema:
+            $ref: '#/definitions/PatchSuccessful'
 
   /company/departments:
     get:
@@ -531,6 +612,7 @@ paths:
       security:
         - OAuth2: [Owner, Approver]
         #- Bearer: []
+      description: Get all departments for company
       responses:
         200:
           description: |
@@ -539,6 +621,25 @@ paths:
             type: array
             items:
               $ref: '#/definitions/DepartmentItem'
+    post:
+      tags:
+        - Company
+      security:
+        - OAuth2: [Owner, Approver]
+      parameters:
+        - name: properties
+          description: "JSON Merge Patch [RFC 7396]"
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+          in: body
+      responses:
+        200:
+          description: Sucessful Response
+          schema:
+            $ref: '#/definitions/InsertSuccessful'
 
   /company/departments/{id}:
     parameters:
@@ -552,12 +653,36 @@ paths:
       security:
         - OAuth2: [Owner, Approver]
         #- Bearer: []
+      description: Get department by ID
       responses:
         200:
           description: |
             Sucessful Response
           schema:
             $ref: '#/definitions/DepartmentItem'
+    patch:
+      tags:
+        - Company
+      security:
+        - OAuth2: [Owner, Approver]
+      parameters:
+        - name: properties
+          description: "JSON Merge Patch [RFC 7396]"
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                required: true
+              version:
+                type: string
+                required: true
+          in: body
+      responses:
+        200:
+          description: Sucessful Response
+          schema:
+            $ref: '#/definitions/PatchSuccessful'
 
   /company/positions:
     get:
@@ -566,6 +691,7 @@ paths:
       security:
         - OAuth2: [Owner, Approver]
         #- Bearer: []
+      description: List all positions for company
       responses:
         200:
           description: |
@@ -574,6 +700,26 @@ paths:
             type: array
             items:
               $ref: '#/definitions/PositionItem'
+    post:
+      tags:
+        - Company
+      security:
+        - OAuth2: [Owner, Approver]
+      description: Add a PositionItem to company
+      parameters:
+        - name: properties
+          description: "JSON"
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+          in: body
+      responses:
+        200:
+          description: Sucessful Response
+          schema:
+            $ref: '#/definitions/InsertSuccessful'
 
   /company/positions/{id}:
     parameters:
@@ -587,6 +733,7 @@ paths:
       security:
         - OAuth2: [Owner, Approver]
         #- Bearer: []
+      description: Get Position by ID
       responses:
         200:
           description: |
@@ -1416,6 +1563,22 @@ definitions:
       total_wages:
         type: number
       total_cash_requirement:
+        type: number
+
+  PayItem:
+    type: object
+    properties:
+      id:
+        type: integer
+      pay_type_id:
+        type: integer
+      employee_id:
+        type: integer
+      hours:
+        type: number
+      rate:
+        type: number
+      override_amount:
         type: number
 
   PatchSuccessful:
