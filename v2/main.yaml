@@ -474,6 +474,37 @@ paths:
           schema:
             $ref: '#/definitions/ErrorBadRequest'
 
+  /company/worksites:
+    get:
+      tags:
+        - Company
+      security:
+        - OAuth2: [Owner, Approver, Controller, Manager]
+      responses:
+        200:
+          description: Sucessful Resopnse
+          schema:
+            type: array
+            items: 
+              $ref: '#/definitions/WorksiteItem'
+
+  /company/worksites/{id}:
+    parameters:
+      - name: id
+        type: integer
+        required: true
+        in: path
+    get:
+      tags:
+        - Company
+      security:
+        - OAuth2: [Owner, Approver, Controller, Manager]
+      responses:
+        200:
+          description: Sucessful Resopnse
+          schema:
+            $ref: '#/definitions/WorksiteItem'
+
   /company/locations/{id}:
     parameters:
       - name: id
@@ -1307,6 +1338,22 @@ definitions:
       last_name:
         type: string
       email:
+        type: string
+
+  WorksiteItem:
+    type: object
+    properties:
+      id:
+        type: integer
+      address:
+        type: string
+      address_2:
+        type: string
+      city:
+        type: string
+      state:
+        type: string
+      zip:
         type: string
 
   DepartmentItem:
