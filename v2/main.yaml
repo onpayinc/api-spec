@@ -280,6 +280,37 @@ paths:
               version:
                 type: string
 
+    patch:
+      tags:
+        - Employees
+      security:
+        - OAuth2: [Owner, Approver]
+      description: Update employee pay items
+      parameters:
+        - name: parameters
+          schema:
+            type: object
+            properties:
+              pay_items:
+                type: array
+                items:
+                  $ref: '#/definitions/PayItem'
+              version:
+                type: string
+          in: body
+      responses:
+        200:
+          description: Sucessful Response
+          schema:
+            type: object
+            properties:
+              pay_items:
+                type: array
+                items:
+                  $ref: '#/definitions/PayItem'
+              version:
+                type: string
+
   /company:
     get:
       tags:
