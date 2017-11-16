@@ -216,6 +216,9 @@ paths:
 
       responses:
         200:
+          description: Sucessful Response
+          schema:
+            $ref: '#/definitions/InsertSuccessful'
 
   /employees/{employee_id}/bank-accounts:
     parameters:
@@ -594,10 +597,8 @@ paths:
             properties:
               name:
                 type: string
-                required: true
               version:
                 type: string
-                required: true
           in: body
       responses:
         200:
@@ -673,10 +674,8 @@ paths:
             properties:
               name:
                 type: string
-                required: true
               version:
                 type: string
-                required: true
           in: body
       responses:
         200:
