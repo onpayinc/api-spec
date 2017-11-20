@@ -1098,10 +1098,13 @@ definitions:
         type: integer
       pay_frequency:
         type: integer
+        readOnly: true
       wage:
         type: string
+        readOnly: true
       rate:
         type: string
+        readOnly: true
       pay_schedule_id:
         type: integer
       employment_status:
@@ -1116,15 +1119,15 @@ definitions:
           - 1
       seasonal:
         type: integer
-      position_id:
-        type: integer
       department_id:
         type: integer
       location_id:
         type: integer
+      position_id:
+        type: integer
       manager_id:
         type: integer
-      workers_comp_id:
+      workers_compensation_id:
         type: integer
       hire_date:
         type: string
