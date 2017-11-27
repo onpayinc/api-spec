@@ -238,22 +238,7 @@ paths:
         200:
           description: Successful Response
           schema:
-            type: object
-            properties:
-              id:
-                type: integer
-              account:
-                type: string
-              routing:
-                type: string
-              amount:
-                type: string
-              percent:
-                type: string
-              order:
-                type: integer
-              savings:
-                type: boolean
+            $ref: '#/definitions/EmployeeAchAccountItem'
 
   /employees/{employee_id}/wages:
     parameters:
@@ -1516,6 +1501,33 @@ definitions:
         type: number
       version:
         type: string
+
+  EmployeeAchAccountItem:
+    type: object
+    properties:
+      id:
+        type: integer
+      employee_id:
+        type: integer
+      type:
+        type: string
+        enum:
+          - dd
+      ach_order:
+        type: integer
+      percent:
+        type: string
+      amount:
+        type: string
+      routing:
+        type: string
+      account:
+        type: string
+      savings:
+        type: integer
+        enum:
+          - 0
+          - 1
 
   DeductionGroupingItem:
     type: object
