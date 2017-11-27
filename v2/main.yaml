@@ -36,27 +36,6 @@ basePath: /v2
 
 paths:
 
-  /employees/{employee_id}/bank-accounts:
-    parameters:
-      - name: employee_id
-        type: integer
-        in: path
-        required: true
-
-    get:
-      tags:
-        - Employees
-      security:
-        - OAuth2: [Owner, Approver]
-      description: |
-        list employee bank accounts
-
-      responses:
-        200:
-          description: Successful Response
-          schema:
-            $ref: '#/definitions/EmployeeAchAccountItem'
-
   /employees/recent-notes-and-comments:
     get:
       tags:
@@ -240,6 +219,27 @@ paths:
           description: Sucessful Response
           schema:
             $ref: '#/definitions/InsertSuccessful'
+
+  /employees/{employee_id}/bank-accounts:
+    parameters:
+      - name: employee_id
+        type: integer
+        in: path
+        required: true
+
+    get:
+      tags:
+        - Employees
+      security:
+        - OAuth2: [Owner, Approver]
+      description: |
+        list employee bank accounts
+
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            $ref: '#/definitions/EmployeeAchAccountItem'
 
   /employees/{employee_id}/wages:
     parameters:
