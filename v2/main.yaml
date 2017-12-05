@@ -1075,6 +1075,9 @@ definitions:
         enum:
           - M
           - F
+        description: >
+           M - Male
+           F - Female
       birthday:
         type: string
         format: ISO
@@ -1137,6 +1140,22 @@ definitions:
         type: integer
       profile_image:
         type: string
+
+  EmployeePost:
+    type: object
+    properties:
+      employee:
+        $ref: '#/definitions/Employee'
+      tax_information:
+        $ref: '#/definitions/EmployeeTaxListObject'
+      wages_list:
+        type: array
+        items:
+          $ref: '#/definitions/WagesListItem'
+      deductions_list:
+        type: array
+        items:
+          $ref: '#/definitions/DeductionListItem'
 
   PayrollCheck:
     type: object
