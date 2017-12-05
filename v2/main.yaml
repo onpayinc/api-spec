@@ -255,7 +255,7 @@ paths:
       description: List employee pay items
       responses:
         200:
-          description: Sucessful Response
+          description: Successful Response
           schema:
             type: object
             properties:
