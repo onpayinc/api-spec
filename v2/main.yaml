@@ -374,7 +374,7 @@ paths:
         - OAuth2: [Owner, Approver]
         #- Bearer: []
       description: |
-        list pay scheduls for company
+        list pay schedules for company
 
       responses:
         200:
@@ -1076,7 +1076,7 @@ definitions:
           - M
           - F
         description: >
-           M - Male
+           M - Male >
            F - Female
       birthday:
         type: string
