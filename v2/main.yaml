@@ -1146,7 +1146,6 @@ definitions:
     properties:
       employee:
         $ref: '#/definitions/Employee'
-      tax_information:
       wages_list:
         type: array
       deductions_list:
@@ -1702,5 +1701,4 @@ definitions:
         description: "error"
       message:
         type: string
-        description: "error message"
-        
+        description: "error message"       
