@@ -1149,8 +1149,6 @@ definitions:
       tax_information:
       wages_list:
         type: array
-        items:
-          $ref: '#/definitions/WagesListItem'
       deductions_list:
         type: array
         items:
