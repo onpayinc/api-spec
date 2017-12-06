@@ -1147,6 +1147,7 @@ definitions:
       employee:
         $ref: '#/definitions/Employee'
       tax_information:
+        type: object
       wages_list:
         type: array
       deductions_list:
