@@ -1701,5 +1701,4 @@ definitions:
         description: "error"
       message:
         type: string
-        description: "error message"
-        
+        description: "error message"       
