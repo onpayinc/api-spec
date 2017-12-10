@@ -1465,7 +1465,7 @@ definitions:
         type: number
       company_match_percent_of_gross_2:
         type: number
-      ignore_defferal:
+      ignore_deferral:
         type: boolean
       nonelective_percent_of_gross:
         type: number
