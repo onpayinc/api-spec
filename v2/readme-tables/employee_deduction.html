@@ -50,209 +50,289 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td data-title="Property" class="code-style">
-                id
-            </td>
-            <td data-title="Value">
-                integer
-            </td>
-            <td data-title="Description">
-                The id of the deduction
-            </td>
-            <td data-title="Notes">
+            <tr>
+                <td data-title="Property" class="code-style">
+                    id
+                </td>
+                <td data-title="Value">
+                    integer
+                </td>
+                <td data-title="Description">
+                    The id of the employee deduction.
+                </td>
+                <td data-title="Notes">
 
-            </td>
-        </tr>
-        <tr>
-            <td data-title="Property" class="code-style">
-                name
-            </td>
-            <td data-title="Value">
-                string
-            </td>
-            <td data-title="Description">
-                The name of the deduction.
-            </td>
-            <td data-title="Notes">
-                writable
-            </td>
-        </tr>
-        <tr>
-            <td data-title="Property" class="code-style">
-                annual_limit
-            </td>
-            <td data-title="Value">
-                decimal
-            </td>
-            <td data-title="Description">
-                The annual limit of the deduction.
-            </td>
-            <td data-title="Notes">
-                writable
-            </td>
-        </tr>
-        <tr>
-            <td data-title="Property" class="code-style">
-                type
-            </td>
-            <td data-title="Value">
-                enum
-            </td>
-            <td data-title="Description">
-                The type of the deduction.
-                <br/>
-                <br/>1 - Section 125 Health
-                <br/>2 - 401k
-                <br/>3 - 403b
-                <br/>4 - 457
-                <br/>6 - Roth 401k
-                <br/>7 - Roth 403b
-                <br/>8 - FSA
-                <br/>9 - HSA
-                <br/>10 - Simple IRA
-                <br/>12 - FSA Dependent Care
-                <br/>21 - Standard Deduction
-                <br/>22 - Tip Deduction
-                <br/>23 - Union Dues
-                <br/>24 - Imputed
-                <br/>25 - Union Dues Hours
-                <br/>102 - Section 132 Commuter
-            </td>
-            <td data-title="Notes">
-                writable
-            </td>
-        </tr>
-        <tr>
-            <td data-title="Property" class="code-style">
-                treat_as_401k_loan
-            </td>
-            <td data-title="Value">
-                enum
-            </td>
-            <td data-title="Description">
-                How retirement accounts are treated for reporting.
-                <br/>
-                <br/>y - include in deferral amounts
-                <br/>S - report as safe harbor
-                <br/>xx - exclude
-            </td>
-            <td data-title="Notes">
-                writable
-            </td>
-        </tr>
-        <tr>
-            <td data-title="Property" class="code-style">
-                company_match_percent
-            </td>
-            <td data-title="Value">
-                decimal
-            </td>
-            <td data-title="Description">
-                The percent of employee contribution that the employer will match.
-            </td>
-            <td data-title="Notes">
-                writable
-            </td>
-        </tr>
-        <tr>
-            <td data-title="Property" class="code-style">
-                company_match_percent_of_gross
-            </td>
-            <td data-title="Value">
-                decimal
-            </td>
-            <td data-title="Description">
-                The maximum percent of gross pay that is susceptible to employer match.
-            </td>
-            <td data-title="Notes">
-                writable
-            </td>
-        </tr>
-        <tr>
-            <td data-title="Property" class="code-style">
-                company_match_percent_2
-            </td>
-            <td data-title="Value">
-                decimal
-            </td>
-            <td data-title="Description">
-                The percent of employee contribution that the employer will match after the first tier is maxed.
-            </td>
-            <td data-title="Notes">
-                writable
-            </td>
-        </tr>
-        <tr>
-            <td data-title="Property" class="code-style">
-                company_match_percent_of_gross_2
-            </td>
-            <td data-title="Value">
-                decimal
-            </td>
-            <td data-title="Description">
-                The maximum percent of employee's gross pay that is susceptible to employer match after the first tier is maxed.
-            </td>
-            <td data-title="Notes">
-                writable
-            </td>
-        </tr>
-        <tr>
-            <td data-title="Property" class="code-style">
-                ignore_deferral
-            </td>
-            <td data-title="Value">
-                boolean
-            </td>
-            <td data-title="Description">
-                Indicates if employer contribution is based on employee contribution or if employer contributes max.
-            </td>
-            <td data-title="Notes">
-                writable
-            </td>
-        </tr>
-        <tr>
-            <td data-title="Property" class="code-style">
-                nonelective_percent_of_gross
-            </td>
-            <td data-title="Value">
-                decimal
-            </td>
-            <td data-title="Description">
-                The percent of employee's gross pay that is contributed by the employer.
-            </td>
-            <td data-title="Notes">
-                writable
-            </td>
-        </tr>
-        <tr>
-            <td data-title="Property" class="code-style">
-                grouping_id
-            </td>
-            <td data-title="Value">
-                integer
-            </td>
-            <td data-title="Description">
-                The grouping id of the deduction.
-            </td>
-            <td data-title="Notes">
-                writable
-            </td>
-        </tr>
-        <tr>
-            <td data-title="Property" class="code-style">
-                version
-            </td>
-            <td data-title="Value">
-                string
-            </td>
-            <td data-title="Description">
-                The version of the deduction. See Versioning section.
-            </td>
-            <td data-title="Notes">
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    employee_id
+                </td>
+                <td data-title="Value">
+                    integer
+                </td>
+                <td data-title="Description">
+                    The id of the employee.
+                </td>
+                <td data-title="Notes">
 
-            </td>
-        </tr>
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    employee_number
+                </td>
+                <td data-title="Value">
+                    integer
+                </td>
+                <td data-title="Description">
+                    The number of the employee. This is an editable identifier.
+                </td>
+                <td data-title="Notes">
+
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    deduction_type
+                </td>
+                <td data-title="Value">
+                    enum
+                </td>
+                <td data-title="Description">
+                    The type of the employee deduction.
+                    <br/>
+                    <br/>1 - Section 125 Health
+                    <br/>2 - 401k
+                    <br/>3 - 403b
+                    <br/>4 - 457
+                    <br/>6 - Roth 401k
+                    <br/>7 - Roth 403b
+                    <br/>8 - FSA
+                    <br/>9 - HSA
+                    <br/>10 - Simple IRA
+                    <br/>12 - FSA Dependent Care
+                    <br/>21 - Standard Deduction
+                    <br/>22 - Tip Deduction
+                    <br/>23 - Union Dues
+                    <br/>24 - Imputed
+                    <br/>25 - Union Dues Hours
+                    <br/>102 - Section 132 Commuter
+                </td>
+                <td data-title="Notes">
+
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    deduction_id
+                </td>
+                <td data-title="Value">
+                    integer
+                </td>
+                <td data-title="Description">
+                    The id of the employee deduction.
+                </td>
+                <td data-title="Notes">
+
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    percent
+                </td>
+                <td data-title="Value">
+                    decimal
+                </td>
+                <td data-title="Description">
+                    The percent of gross of the employee contribution.  Takes precedent over amount.
+                </td>
+                <td data-title="Notes">
+                    writable
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    annual_limit
+                </td>
+                <td data-title="Value">
+                    decimal
+                </td>
+                <td data-title="Description">
+                    The annual limit of the employee deduction.
+                </td>
+                <td data-title="Notes">
+
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    amount
+                </td>
+                <td data-title="Value">
+                    decimal
+                </td>
+                <td data-title="Description">
+                    The amount of the employee contribution.
+                </td>
+                <td data-title="Notes">
+                    writable
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    override_amount
+                </td>
+                <td data-title="Value">
+                    decimal
+                </td>
+                <td data-title="Description">
+                    The override amount of the employee deduction.
+                </td>
+                <td data-title="Notes">
+                    writable
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    active
+                </td>
+                <td data-title="Value">
+                    boolean
+                </td>
+                <td data-title="Description">
+                    Indicates if the employee deduction is active for the pay run.
+                </td>
+                <td data-title="Notes">
+                    writable
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    ach_active
+                </td>
+                <td data-title="Value">
+                    boolean
+                </td>
+                <td data-title="Description">
+                    Indicates if ach is active.
+                </td>
+                <td data-title="Notes">
+                    writable
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    routing
+                </td>
+                <td data-title="Value">
+                    string
+                </td>
+                <td data-title="Description">
+                    The routing number to which the deduction applies.
+                </td>
+                <td data-title="Notes">
+                    writable
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    account
+                </td>
+                <td data-title="Value">
+                    string
+                </td>
+                <td data-title="Description">
+                    The account number to which the deduction applies.
+                </td>
+                <td data-title="Notes">
+                    writable
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    savings
+                </td>
+                <td data-title="Value">
+                    boolean
+                </td>
+                <td data-title="Description">
+                    Indicates if the account is a savings account.
+                </td>
+                <td data-title="Notes">
+                    writable
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    memo
+                </td>
+                <td data-title="Value">
+                    string
+                </td>
+                <td data-title="Description">
+                    The memo for the employee deduction.
+                </td>
+                <td data-title="Notes">
+                    writable
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    include_benefit_amount_in_ach
+                </td>
+                <td data-title="Value">
+                    boolean
+                </td>
+                <td data-title="Description">
+                    Indicates if the benefit amount is to be included in ach.
+                </td>
+                <td data-title="Notes">
+                    writable
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    override_company_benefit_amount
+                </td>
+                <td data-title="Value">
+                    decimal
+                </td>
+                <td data-title="Description">
+                    The override amount of the employer contribution.
+                </td>
+                <td data-title="Notes">
+                    writable
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    lifetime_limit
+                </td>
+                <td data-title="Value">
+                    decimal
+                </td>
+                <td data-title="Description">
+                    The lifetime limit of the employee deduction.
+                </td>
+                <td data-title="Notes">
+                    writable
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    version
+                </td>
+                <td data-title="Value">
+                    string
+                </td>
+                <td data-title="Description">
+                    The version of the employee. See Versioning section.
+                </td>
+                <td data-title="Notes">
+
+                </td>
+            </tr>
         </tbody>
     </table>
 </div>
