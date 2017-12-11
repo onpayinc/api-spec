@@ -983,7 +983,7 @@ paths:
   /company/state-tax-fields/{fips}:
     parameters:
       - name: fips
-        type: enum
+        type: string
         required: true
         in: path
     get:
