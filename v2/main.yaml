@@ -297,6 +297,118 @@ paths:
               version:
                 type: string
 
+  /employees/{employee_id}/leave:
+    parameters:
+      - name: employee_id
+        type: integer
+        required: true
+        in: path
+    get:
+      tags:
+        - Employees
+      security:
+        - OAuth2: [Owner, Approver]
+      description: List employee leave items
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            type: object
+            properties:
+              pay_items:
+                type: array
+                items:
+                  $ref: '#/definitions/LeaveItem'
+              version:
+                type: string
+
+    patch:
+      tags:
+        - Employees
+      security:
+        - OAuth2: [Owner, Approver]
+      description: Update employee leave items
+      parameters:
+        - name: parameters
+          schema:
+            type: object
+            properties:
+              pay_items:
+                type: array
+                items:
+                  $ref: '#/definitions/LeaveItem'
+              version:
+                type: string
+          in: body
+      responses:
+        200:
+          description: Sucessful Response
+          schema:
+            type: object
+            properties:
+              pay_items:
+                type: array
+                items:
+                  $ref: '#/definitions/LeaveItem'
+              version:
+                type: string
+
+  /employees/{employee_id}/tax-fields:
+    parameters:
+      - name: employee_id
+        type: integer
+        required: true
+        in: path
+    get:
+      tags:
+        - Employees
+      security:
+        - OAuth2: [Owner, Approver]
+      description: List employee tax fields
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            type: object
+            properties:
+              pay_items:
+                type: array
+                items:
+                  $ref: '#/definitions/TaxFields'
+              version:
+                type: string
+
+    patch:
+      tags:
+        - Employees
+      security:
+        - OAuth2: [Owner, Approver]
+      description: Update employee leave items
+      parameters:
+        - name: parameters
+          schema:
+            type: object
+            properties:
+              pay_items:
+                type: array
+                items:
+                  $ref: '#/definitions/LeaveItem'
+              version:
+                type: string
+          in: body
+      responses:
+        200:
+          description: Sucessful Response
+          schema:
+            type: object
+            properties:
+              pay_items:
+                type: array
+                items:
+                  $ref: '#/definitions/LeaveItem'
+              version:
+                type: string
+
   /company:
     get:
       tags:
@@ -1668,6 +1780,63 @@ definitions:
         type: number
       override_amount:
         type: number
+
+  LeaveItem:
+    type: object
+    properties:
+      available:
+        type: integer
+      version:
+        type: string
+
+  TaxFields:
+    type: object
+    properties:
+      federal_status:
+        type: integer
+      federal_allowances:
+        type: integer
+      fica_exempt:
+        type: boolean
+      fit_exempt:
+        type: boolean
+      fit_additional_amount:
+        type: integer
+      work_location_display_fields:
+        $ref: '#/definitions/StateDisplayFieldsObject'
+      state_misc_1_value:
+        type: string
+      state_misc_3_value:
+        type: string
+      state_misc_2_value:
+        type: string
+      sit_additional_amount:
+        type: integer
+      sdi_exempt:
+        type: boolean
+      state_misc_4_value:
+        type: string
+      sit_exempt:
+        type: boolean
+      state_resident:
+        type: boolean
+
+  StateDisplayFieldsObject:
+    type: object
+    properties:
+      state_information:
+        $ref: '#/definitions/StateInformationObject'
+      display_fields:
+        $ref: '#/definitions/DisplayFieldsObject'
+
+  StateInformationObject:
+    type: object
+    properties:
+      name:
+        type: string
+
+  DisplayFieldsObject:
+    type: object
 
   PatchSuccessful:
     type: object
