@@ -341,12 +341,7 @@ paths:
           schema:
             type: object
             properties:
-              pay_items:
-                type: array
-                items:
-                  $ref: '#/definitions/TaxFields'
-              version:
-                type: string
+              $ref: '#/definitions/TaxFields'
 
     patch:
       tags:
@@ -359,12 +354,7 @@ paths:
           schema:
             type: object
             properties:
-              pay_items:
-                type: array
-                items:
-                  $ref: '#/definitions/TaxFields'
-              version:
-                type: string
+              $ref: '#/definitions/TaxFields'
           in: body
       responses:
         200:
@@ -372,12 +362,7 @@ paths:
           schema:
             type: object
             properties:
-              pay_items:
-                type: array
-                items:
-                  $ref: '#/definitions/TaxFields'
-              version:
-                type: string
+              $ref: '#/definitions/TaxFields'
 
   /employees/recent-notes-and-comments:
     get:

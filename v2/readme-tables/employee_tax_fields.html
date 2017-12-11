@@ -1,0 +1,254 @@
+<!--Copy content of this file as custom HTML/CSS into the appropriate page-->
+
+<style>
+
+    table {
+        width:100%;
+        margin:10px;
+        background-color:whitesmoke;
+    }
+
+    th {
+        border-top:1px !important;
+        text-align:left;
+        padding: 10px !important;
+        font-weight: normal !important;
+    }
+
+    td {
+        border:none !important;
+        padding: 10px !important;
+    }
+
+    thead tr {
+        background-color: #24ad8d;
+    }
+
+    tbody tr {
+        border: 1px solid lightgray !important;
+    }
+
+    .code-style {
+        font-family: monospace;
+        font-size: 12px;
+    }
+
+</style>
+
+<div></div>
+<!-- Responsive table starts here -->
+<!-- For correct display on small screens you must add 'data-title' to each 'td' in your table -->
+<div style="padding-right:30px;">
+    <!-- Table starts here -->
+    <table id="table" class="table no-border">
+        <thead>
+        <tr>
+            <th>Property</th>
+            <th>Value</th>
+            <th>Description</th>
+            <th>Notes</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    federal_status
+                </td>
+                <td data-title="Value">
+                    enum
+                </td>
+                <td data-title="Description">
+                    The federal marital status of the employee.
+                    <br/>
+                    <br/>1 - Single
+                    <br/>2 - Married
+                </td>
+                <td data-title="Notes">
+                    writable
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    federal_allowances
+                </td>
+                <td data-title="Value">
+                    integer
+                </td>
+                <td data-title="Description">
+                    The number of the employee's federal allowances.
+                </td>
+                <td data-title="Notes">
+                    writable
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    fica_exempt
+                </td>
+                <td data-title="Value">
+                    boolean
+                </td>
+                <td data-title="Description">
+                    Indicates if the employee is FICA exempt.
+                </td>
+                <td data-title="Notes">
+                    writable
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    fit_exempt
+                </td>
+                <td data-title="Value">
+                    boolean
+                </td>
+                <td data-title="Description">
+                    Indicates if the employee is FIT exempt.
+                </td>
+                <td data-title="Notes">
+                    writable
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    fit_additional_amount
+                </td>
+                <td data-title="Value">
+                    decimal
+                </td>
+                <td data-title="Description">
+                    Additional FIT wittholding for the employee.
+                </td>
+                <td data-title="Notes">
+                    writable
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    sdi_exempt
+                </td>
+                <td data-title="Value">
+                    boolean
+                </td>
+                <td data-title="Description">
+                    Indicates if the employee is SDI exempt.
+                </td>
+                <td data-title="Notes">
+                    writable
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    sit_exempt
+                </td>
+                <td data-title="Value">
+                    boolean
+                </td>
+                <td data-title="Description">
+                    Indicates if the employee is SIT exempt.
+                </td>
+                <td data-title="Notes">
+                    wriatable
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    sit_additional_amount
+                </td>
+                <td data-title="Value">
+                    decimal
+                </td>
+                <td data-title="Description">
+                    Additional SIT withholding for the employee.
+                </td>
+                <td data-title="Notes">
+                    writable
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    state_resident
+                </td>
+                <td data-title="Value">
+                    boolean
+                </td>
+                <td data-title="Description">
+                    Indicates if the employee is a resident of the work state.
+                </td>
+                <td data-title="Notes">
+                    writable
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    state_misc_1_value
+                </td>
+                <td data-title="Value">
+                    mixed
+                </td>
+                <td data-title="Description">
+                    Dependent on employee tax state.
+                </td>
+                <td data-title="Notes">
+                    writable
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    state_misc_2_value
+                </td>
+                <td data-title="Value">
+                    mixed
+                </td>
+                <td data-title="Description">
+                    Dependent on employee tax state.
+                </td>
+                <td data-title="Notes">
+                    writable
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    state_misc_3_value
+                </td>
+                <td data-title="Value">
+                    mixed
+                </td>
+                <td data-title="Description">
+                    Dependent on employee tax state.
+                </td>
+                <td data-title="Notes">
+                    writable
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    state_misc_4_value
+                </td>
+                <td data-title="Value">
+                    mixed
+                </td>
+                <td data-title="Description">
+                    Dependent on employee tax state.
+                </td>
+                <td data-title="Notes">
+                    writable
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    work_location_display_fields
+                </td>
+                <td data-title="Value">
+                    object
+                </td>
+                <td data-title="Description">
+                    Contains information on how to display tax fields for the employee's tax state(s).
+                </td>
+                <td data-title="Notes">
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
