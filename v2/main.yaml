@@ -341,7 +341,34 @@ paths:
           schema:
             type: object
             properties:
-              $ref: '#/definitions/TaxFields'
+              federal_status:
+                type: integer
+              federal_allowances:
+                type: integer
+              fica_exempt:
+                type: boolean
+              fit_exempt:
+                type: boolean
+              fit_additional_amount:
+                type: integer
+              work_location_display_fields:
+                $ref: '#/definitions/StateDisplayFieldsObject'
+              state_misc_1_value:
+                type: string
+              state_misc_3_value:
+                type: string
+              state_misc_2_value:
+                type: string
+              sit_additional_amount:
+                type: integer
+              sdi_exempt:
+                type: boolean
+              state_misc_4_value:
+                type: string
+              sit_exempt:
+                type: boolean
+              state_resident:
+                type: boolean
 
     patch:
       tags:
@@ -354,7 +381,34 @@ paths:
           schema:
             type: object
             properties:
-              $ref: '#/definitions/TaxFields'
+              federal_status:
+                type: integer
+              federal_allowances:
+                type: integer
+              fica_exempt:
+                type: boolean
+              fit_exempt:
+                type: boolean
+              fit_additional_amount:
+                type: integer
+              work_location_display_fields:
+                $ref: '#/definitions/StateDisplayFieldsObject'
+              state_misc_1_value:
+                type: string
+              state_misc_3_value:
+                type: string
+              state_misc_2_value:
+                type: string
+              sit_additional_amount:
+                type: integer
+              sdi_exempt:
+                type: boolean
+              state_misc_4_value:
+                type: string
+              sit_exempt:
+                type: boolean
+              state_resident:
+                type: boolean
           in: body
       responses:
         200:
@@ -362,7 +416,34 @@ paths:
           schema:
             type: object
             properties:
-              $ref: '#/definitions/TaxFields'
+              federal_status:
+                type: integer
+              federal_allowances:
+                type: integer
+              fica_exempt:
+                type: boolean
+              fit_exempt:
+                type: boolean
+              fit_additional_amount:
+                type: integer
+              work_location_display_fields:
+                $ref: '#/definitions/StateDisplayFieldsObject'
+              state_misc_1_value:
+                type: string
+              state_misc_3_value:
+                type: string
+              state_misc_2_value:
+                type: string
+              sit_additional_amount:
+                type: integer
+              sdi_exempt:
+                type: boolean
+              state_misc_4_value:
+                type: string
+              sit_exempt:
+                type: boolean
+              state_resident:
+                type: boolean
 
   /employees/recent-notes-and-comments:
     get:
