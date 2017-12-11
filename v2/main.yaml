@@ -980,6 +980,44 @@ paths:
           schema:
             $ref: '#/definitions/PatchSuccessful'
 
+  /company/state-tax-fields/{fips}:
+    parameters:
+      - name: fips
+        type: integer
+        required: true
+        in: path
+    get:
+      tags:
+        - Company
+      security:
+        - OAuth2: [Owner, Approver]
+        #- Bearer: []
+      description: Get state tax fields by fips code
+      responses:
+        200:
+          description: |
+            Sucessful Response
+          schema:
+            $ref: '#/definitions/TaxFields'
+    patch:
+      tags:
+        - Company
+      parameters:
+        - name: properties
+          description: "JSON Merge Patch [RFC 7396]"
+          schema:
+            $ref: '#/definitions/TaxFields'
+          in: body
+      security:
+        - OAuth2: [Owner, Approver]
+        #- Bearer: []
+      responses:
+        200:
+          description: |
+            Sucessful Response
+          schema:
+            $ref: '#/definitions/PatchSuccessful'
+
   /user:
     get:
       tags:
