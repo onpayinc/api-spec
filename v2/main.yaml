@@ -36,36 +36,6 @@ basePath: /v2
 
 paths:
 
-  /employees/recent-notes-and-comments:
-    get:
-      tags:
-        - Employees
-      security:
-        - OAuth2: [Owner,Approver,Controller,Manager]
-       # - Bearer: []
-      description: |
-        Get recent notes and or comments from an employees account.
-
-      responses:
-        200:
-          description: Successful Response
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/EmployeeNote'
-        400:
-          description: 'Bad Request'
-          schema:
-            $ref: '#/definitions/ErrorBadRequest'
-        401:
-          description: 'Unauthorized'
-          schema:
-            $ref: '#/definitions/ErrorBadRequest'
-        402:
-          description: 'Unauthorized'
-          schema:
-            $ref: '#/definitions/ErrorBadRequest'
-
   /employees:
     get:
       tags:
@@ -408,6 +378,36 @@ paths:
                   $ref: '#/definitions/TaxFields'
               version:
                 type: string
+
+  /employees/recent-notes-and-comments:
+    get:
+      tags:
+        - Employees
+      security:
+        - OAuth2: [Owner,Approver,Controller,Manager]
+       # - Bearer: []
+      description: |
+        Get recent notes and or comments from an employees account.
+
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/EmployeeNote'
+        400:
+          description: 'Bad Request'
+          schema:
+            $ref: '#/definitions/ErrorBadRequest'
+        401:
+          description: 'Unauthorized'
+          schema:
+            $ref: '#/definitions/ErrorBadRequest'
+        402:
+          description: 'Unauthorized'
+          schema:
+            $ref: '#/definitions/ErrorBadRequest'
 
   /company:
     get:
