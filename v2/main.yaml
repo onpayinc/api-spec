@@ -1370,11 +1370,9 @@ definitions:
           birthday:
             type: string
             format: ISO
-            required: true
           hire_date:
             type: string
             format: ISO
-            required: true
           rehire_date:
             type: string
             format: ISO
@@ -1397,25 +1395,18 @@ definitions:
             type: string
           address:
             type: string
-            required: true
           address_2:
             type: string
-            required: true
           city:
             type: string
-            required: true
           state:
             type: string
-            required: true
           zip:
             type: string
-            required: true
           first_name:
             type: string
-            required: true
           last_name:
             type: string
-            required: true
           middle_initial:
             type: string
           employee_notes:
@@ -1424,7 +1415,6 @@ definitions:
             type: string
           ssn:
             type: string
-            required: true
           gender:
             type: integer
             enum:
@@ -1460,7 +1450,6 @@ definitions:
               - 3
               - 4
           type:
-            required: true
             type: integer
             enum:
               - 0
