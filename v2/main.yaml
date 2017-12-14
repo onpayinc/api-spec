@@ -376,7 +376,7 @@ paths:
         - Employees
       security:
         - OAuth2: [Owner, Approver]
-      description:
+      description: Patch employee tax fields
       parameters:
         - name: parameters
           schema:
