@@ -112,6 +112,22 @@ paths:
           schema:
             $ref: '#/definitions/ErrorBadRequest'
 
+    post:
+          tags:
+            - Employees
+            - Deductions
+          security:
+           - OAuth2: [Owner, Approver]
+
+          description: |
+            Insert deduction batch for an employee by employee ID and deduction ID
+
+          responses:
+            200:
+              description: Sucessful Response
+              schema:
+                $ref: '#/definitions/InsertSuccessful'
+
   /employees/{employee_id}/deductions:
     get:
       tags:
@@ -285,7 +301,7 @@ paths:
           schema:
             type: object
             properties:
-              pay_items:
+              leave_items:
                 type: array
                 items:
                   $ref: '#/definitions/LeaveItem'
@@ -1361,13 +1377,112 @@ definitions:
     type: object
     properties:
       employee:
-        $ref: '#/definitions/Employee'
-      wages_list:
         type: array
-      deductions_list:
+        properties:
+          birthday:
+            type: ISO
+          hire_date:
+            type: ISO
+          rehire_date:
+            type: ISO
+          termination_date:
+            type: ISO
+          accrual_vacation_policy_id:
+            type: integer
+          accrual_sick_policy_id:
+            type: integer
+          accrual_pto_policy_id:
+            type: integer
+          can_revoke_online_access:
+            type: boolean
+          cell_phone_number:
+            type: string
+          department_id:
+            type: integer
+          email:
+            type: string
+          address:
+            type: string
+          address_2:
+            type: string
+          city:
+            type: string
+          state:
+            type: string
+          zip:
+            type: string
+          first_name:
+            type: string
+          last_name:
+            type: string
+          middle_initial:
+            type: string
+          employee_notes:
+            type: string
+          employee_number:
+            type: string
+          ssn:
+            type: string
+          gender:
+            type: enum
+              - M
+              - F
+          home_phone_number:
+            type: string
+          mail_address:
+            type: string
+          mail_address_2:
+            type: string
+          mail_city:
+            type: string
+          mail_state:
+            type: string
+          use_mail_address:
+            type: boolean
+          mail_zip:
+            type: string
+          manager_id:
+            type: string
+          part_time:
+            type: boolean
+          pay_schedule_id:
+            type: integer
+          position_id:
+            type: integer
+          seasonal:
+            type: boolean
+          supplemental_calculation_method:
+            type: enum
+              - 3
+              - 4
+          type:
+            type: enum
+              - 1
+              - 2
+          tipped:
+            type: boolean
+          use_401k_catchup:
+            type: boolean
+          use_hsa_catchup:
+            type: boolean
+          use_hsa_family:
+            type: boolean
+          workers_compensation_id:
+            type: integer
+          work_phone_number:
+            type: string
+      wages:
+        type: array
+        items:
+          $ref: '#/definitions/WageListItem'
+      deductions:
         type: array
         items:
           $ref: '#/definitions/DeductionListItem'
+      bank_accounts:
+        type: array
+        items:
+          $ref: '#/definitions/EmployeeAchAccountItem'
 
   PayrollCheck:
     type: object
