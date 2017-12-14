@@ -1456,9 +1456,7 @@ definitions:
               - 3
               - 4
           type:
-            type: enum
-              - 1
-              - 2
+            type: integer
           tipped:
             type: boolean
           use_401k_catchup:
