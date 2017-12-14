@@ -65,6 +65,19 @@ paths:
           schema:
             $ref: '#/definitions/ErrorBadRequest'
 
+    post:
+          tags:
+            - Employees
+          security:
+           - OAuth2: [Owner, Approver]
+          description: |
+            Insert employee
+          responses:
+            200:
+              description: Sucessful Response
+              schema:
+                $ref: '#/definitions/InsertSuccessful'
+
   /employees/{employee_id}:
     parameters:
       - name: employee_id
@@ -111,22 +124,6 @@ paths:
           description: Bad Request
           schema:
             $ref: '#/definitions/ErrorBadRequest'
-
-    post:
-          tags:
-            - Employees
-            - Deductions
-          security:
-           - OAuth2: [Owner, Approver]
-
-          description: |
-            Insert deduction batch for an employee by employee ID and deduction ID
-
-          responses:
-            200:
-              description: Sucessful Response
-              schema:
-                $ref: '#/definitions/InsertSuccessful'
 
   /employees/{employee_id}/deductions:
     get:
@@ -1367,9 +1364,11 @@ definitions:
           birthday:
             type: string
             format: ISO
+            required: true
           hire_date:
             type: string
             format: ISO
+            required: true
           rehire_date:
             type: string
             format: ISO
@@ -1392,18 +1391,25 @@ definitions:
             type: string
           address:
             type: string
+            required: true
           address_2:
             type: string
+            required: true
           city:
             type: string
+            required: true
           state:
             type: string
+            required: true
           zip:
             type: string
+            required: true
           first_name:
             type: string
+            required: true
           last_name:
             type: string
+            required: true
           middle_initial:
             type: string
           employee_notes:
@@ -1412,6 +1418,7 @@ definitions:
             type: string
           ssn:
             type: string
+            required: true
           gender:
             type: integer
             enum:
@@ -1447,6 +1454,7 @@ definitions:
               - 3
               - 4
           type:
+            required: true
             type: integer
             enum:
               - 0
