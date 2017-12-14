@@ -299,14 +299,9 @@ paths:
         200:
           description: Successful Response
           schema:
-            type: object
-            properties:
-              leave_items:
-                type: array
-                items:
-                  $ref: '#/definitions/LeaveItem'
-              version:
-                type: string
+            type: array
+            items:
+              $ref: '#/definitions/LeaveItem'
 
     patch:
       tags:
@@ -317,27 +312,17 @@ paths:
       parameters:
         - name: parameters
           schema:
-            type: object
-            properties:
-              pay_items:
-                type: array
-                items:
-                  $ref: '#/definitions/LeaveItem'
-              version:
-                type: string
+            type: array
+            items:
+              $ref: '#/definitions/LeaveItem'
           in: body
       responses:
         200:
           description: Sucessful Response
           schema:
-            type: object
-            properties:
-              pay_items:
-                type: array
-                items:
-                  $ref: '#/definitions/LeaveItem'
-              version:
-                type: string
+            type: array
+            items:
+              $ref: '#/definitions/LeaveItem'
 
   /employees/{employee_id}/tax-fields:
     parameters:
@@ -391,7 +376,7 @@ paths:
         - Employees
       security:
         - OAuth2: [Owner, Approver]
-      description: Update employee leave items
+      description:
       parameters:
         - name: parameters
           schema:
@@ -2010,6 +1995,8 @@ definitions:
   LeaveItem:
     type: object
     properties:
+      id:
+        type: integer
       available:
         type: integer
       version:

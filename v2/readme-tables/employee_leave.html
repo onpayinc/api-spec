@@ -1,0 +1,338 @@
+<!--Copy content of this file as custom HTML/CSS into the appropriate page-->
+
+<style>
+
+    table {
+        width:100%;
+        margin:10px;
+        background-color:whitesmoke;
+    }
+
+    th {
+        border-top:1px !important;
+        text-align:left;
+        padding: 10px !important;
+        font-weight: normal !important;
+    }
+
+    td {
+        border:none !important;
+        padding: 10px !important;
+    }
+
+    thead tr {
+        background-color: #24ad8d;
+    }
+
+    tbody tr {
+        border: 1px solid lightgray !important;
+    }
+
+    .code-style {
+        font-family: monospace;
+        font-size: 12px;
+    }
+
+</style>
+
+<div></div>
+<!-- Responsive table starts here -->
+<!-- For correct display on small screens you must add 'data-title' to each 'td' in your table -->
+<div style="padding-right:30px;">
+    <!-- Table starts here -->
+    <table id="table" class="table no-border">
+        <thead>
+        <tr>
+            <th>Property</th>
+            <th>Value</th>
+            <th>Description</th>
+            <th>Notes</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    id
+                </td>
+                <td data-title="Value">
+                    integer
+                </td>
+                <td data-title="Description">
+                    The id of the employee deduction.
+                </td>
+                <td data-title="Notes">
+
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    employee_id
+                </td>
+                <td data-title="Value">
+                    integer
+                </td>
+                <td data-title="Description">
+                    The id of the employee.
+                </td>
+                <td data-title="Notes">
+
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    employee_number
+                </td>
+                <td data-title="Value">
+                    integer
+                </td>
+                <td data-title="Description">
+                    The number of the employee. This is an editable identifier.
+                </td>
+                <td data-title="Notes">
+
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    deduction_type
+                </td>
+                <td data-title="Value">
+                    enum
+                </td>
+                <td data-title="Description">
+                    The type of the employee deduction.
+                    <br/>
+                    <br/>1 - Section 125 Health
+                    <br/>2 - 401k
+                    <br/>3 - 403b
+                    <br/>4 - 457
+                    <br/>6 - Roth 401k
+                    <br/>7 - Roth 403b
+                    <br/>8 - FSA
+                    <br/>9 - HSA
+                    <br/>10 - Simple IRA
+                    <br/>12 - FSA Dependent Care
+                    <br/>21 - Standard Deduction
+                    <br/>22 - Tip Deduction
+                    <br/>23 - Union Dues
+                    <br/>24 - Imputed
+                    <br/>25 - Union Dues Hours
+                    <br/>102 - Section 132 Commuter
+                </td>
+                <td data-title="Notes">
+
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    deduction_id
+                </td>
+                <td data-title="Value">
+                    integer
+                </td>
+                <td data-title="Description">
+                    The id of the company deduction.
+                </td>
+                <td data-title="Notes">
+
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    percent
+                </td>
+                <td data-title="Value">
+                    decimal
+                </td>
+                <td data-title="Description">
+                    The percent of gross of the employee contribution.  Takes precedent over amount.
+                </td>
+                <td data-title="Notes">
+                    writable
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    annual_limit
+                </td>
+                <td data-title="Value">
+                    decimal
+                </td>
+                <td data-title="Description">
+                    The annual limit of the employee deduction.
+                </td>
+                <td data-title="Notes">
+
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    amount
+                </td>
+                <td data-title="Value">
+                    decimal
+                </td>
+                <td data-title="Description">
+                    The amount of the employee contribution.
+                </td>
+                <td data-title="Notes">
+                    writable
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    override_amount
+                </td>
+                <td data-title="Value">
+                    decimal
+                </td>
+                <td data-title="Description">
+                    The override amount of the employee deduction.
+                </td>
+                <td data-title="Notes">
+                    writable
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    active
+                </td>
+                <td data-title="Value">
+                    boolean
+                </td>
+                <td data-title="Description">
+                    Indicates if the employee deduction is active for the pay run.
+                </td>
+                <td data-title="Notes">
+                    writable
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    ach_active
+                </td>
+                <td data-title="Value">
+                    boolean
+                </td>
+                <td data-title="Description">
+                    Indicates if ach is active.
+                </td>
+                <td data-title="Notes">
+                    writable
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    routing
+                </td>
+                <td data-title="Value">
+                    string
+                </td>
+                <td data-title="Description">
+                    The routing number to which the deduction applies.
+                </td>
+                <td data-title="Notes">
+                    writable
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    account
+                </td>
+                <td data-title="Value">
+                    string
+                </td>
+                <td data-title="Description">
+                    The account number to which the deduction applies.
+                </td>
+                <td data-title="Notes">
+                    writable
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    savings
+                </td>
+                <td data-title="Value">
+                    boolean
+                </td>
+                <td data-title="Description">
+                    Indicates if the account is a savings account.
+                </td>
+                <td data-title="Notes">
+                    writable
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    memo
+                </td>
+                <td data-title="Value">
+                    string
+                </td>
+                <td data-title="Description">
+                    The memo for the employee deduction.
+                </td>
+                <td data-title="Notes">
+                    writable
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    include_benefit_amount_in_ach
+                </td>
+                <td data-title="Value">
+                    boolean
+                </td>
+                <td data-title="Description">
+                    Indicates if the benefit amount is to be included in ach.
+                </td>
+                <td data-title="Notes">
+                    writable
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    override_company_benefit_amount
+                </td>
+                <td data-title="Value">
+                    decimal
+                </td>
+                <td data-title="Description">
+                    The override amount of the employer contribution.
+                </td>
+                <td data-title="Notes">
+                    writable
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    lifetime_limit
+                </td>
+                <td data-title="Value">
+                    decimal
+                </td>
+                <td data-title="Description">
+                    The lifetime limit of the employee deduction.
+                </td>
+                <td data-title="Notes">
+                    writable
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    version
+                </td>
+                <td data-title="Value">
+                    string
+                </td>
+                <td data-title="Description">
+                    The version of the employee. See Versioning section.
+                </td>
+                <td data-title="Notes">
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
