@@ -1380,13 +1380,17 @@ definitions:
         type: array
         properties:
           birthday:
-            type: ISO
+            type: string
+            format: ISO
           hire_date:
-            type: ISO
+            type: string
+            format: ISO
           rehire_date:
-            type: ISO
+            type: string
+            format: ISO
           termination_date:
-            type: ISO
+            type: string
+            format: ISO
           accrual_vacation_policy_id:
             type: integer
           accrual_sick_policy_id:
