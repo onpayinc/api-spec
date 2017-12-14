@@ -72,6 +72,12 @@ paths:
            - OAuth2: [Owner, Approver]
           description: |
             Insert employee
+          parameters:
+            - name: properties
+              description: ""
+              schema:
+                $ref: '#/definitions/EmployeePost'
+              in: body
           responses:
             200:
               description: Sucessful Response
