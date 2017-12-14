@@ -1452,9 +1452,7 @@ definitions:
           seasonal:
             type: boolean
           supplemental_calculation_method:
-            type: enum
-              - 3
-              - 4
+            type: integer
           type:
             type: integer
           tipped:
