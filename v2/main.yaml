@@ -1424,7 +1424,8 @@ definitions:
           ssn:
             type: string
           gender:
-            type: enum
+            type: integer
+            enum:
               - M
               - F
           home_phone_number:
@@ -1453,8 +1454,14 @@ definitions:
             type: boolean
           supplemental_calculation_method:
             type: integer
+            enum:
+              - 3
+              - 4
           type:
             type: integer
+            enum:
+              - 0
+              - 1
           tipped:
             type: boolean
           use_401k_catchup:
