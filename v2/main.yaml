@@ -751,6 +751,35 @@ paths:
           description: Sucessful Resopnse
           schema:
             $ref: '#/definitions/WorksiteItem'
+    patch:
+      tags:
+        - Company
+      security:
+        - OAuth2: [Owner, Approver]
+      parameters:
+        - name: properties
+          description: "JSON Merge Patch [RFC 7396]"
+          schema:
+            type: object
+            properties:
+              address:
+                type: string
+              address_2:
+                type: string
+              city:
+                type: string
+              state:
+                type: string
+              zip:
+                type: string
+              version:
+                type: string
+          in: body
+      responses:
+        200:
+          description: Sucessful Response
+          schema:
+            $ref: '#/definitions/PatchSuccessful'
 
   /company/locations:
     get:
@@ -1915,6 +1944,8 @@ definitions:
       state:
         type: string
       zip:
+        type: string
+      version:
         type: string
 
   DepartmentItem:
