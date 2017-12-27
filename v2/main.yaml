@@ -1313,8 +1313,6 @@ definitions:
         type: string
       mail_zip:
         type: string
-      include_in_calculation:
-        type: string
       email:
         type: string
       ssn:
