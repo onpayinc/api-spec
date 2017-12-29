@@ -1169,7 +1169,7 @@ paths:
               count:
                 type: integer
 
-  /approved-pay-runs:
+  /reports/approved-pay-runs:
     get:
       tags:
         - Pay-runs
