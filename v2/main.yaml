@@ -449,6 +449,33 @@ paths:
               state_resident:
                 type: boolean
 
+  /employees/{employee_id}/termination:
+    parameters:
+      - name: employee_id
+        type: integer
+        required: true
+        in: path
+    post:
+      tags:
+        - Employees
+      security:
+        - OAuth2: [Owner, Approver, Controller, Manager]
+      description: Terminate employee
+      parameters:
+        - name: termination_code
+          type: string
+          required: true
+          in: body
+        - name: termination_date
+          type: string
+          required: true
+          in: body
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            $ref: '#/definitions/Employee'
+
   /employees/recent-notes-and-comments:
     get:
       tags:
