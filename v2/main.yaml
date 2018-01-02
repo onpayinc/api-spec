@@ -465,13 +465,12 @@ paths:
         - name: parameters
           schema:
             type: object
+            required: [termination_date, termination_code]
             properties:
               termination_code:
                 type: string
-                required: true
-              termincation_date:
+              termination_date:
                 type: string
-                required: true
           in: body
       responses:
         200:
