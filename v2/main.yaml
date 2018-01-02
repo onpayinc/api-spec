@@ -462,13 +462,16 @@ paths:
         - OAuth2: [Owner, Approver, Controller, Manager]
       description: Terminate employee
       parameters:
-        - name: termination_code
-          type: string
-          required: true
-          in: body
-        - name: termination_date
-          type: string
-          required: true
+        - name: parameters
+          schema:
+            type: object
+            properties:
+              termination_code:
+                type: string
+                required: true
+              termincation_date:
+                type: string
+                required: true
           in: body
       responses:
         200:
