@@ -223,12 +223,42 @@ paths:
         - OAuth2: [Owner, Approver]
       description: |
         list employee bank accounts
-
       responses:
         200:
           description: Successful Response
           schema:
             $ref: '#/definitions/EmployeeAchAccountItem'
+
+    put:
+      tags:
+        - Employees
+      security:
+        - OAuth2: [Owner, Approver]
+      description: put employee bank accounts
+      parameters:
+        - name: parameters
+          schema:
+            type: object
+            properties:
+              bank_accounts:
+                type: array
+                items:
+                  $ref: '#/definitions/EmployeeAchAccountPutItem'
+              version:
+                type: string
+          in: body
+      responses:
+        200:
+          description: Sucessful Response
+          schema:
+            type: object
+            properties:
+              bank_accounts:
+                type: array
+                items:
+                  $ref: '#/definitions/EmployeeAchAccountItem'
+              version:
+                type: string
 
   /employees/{employee_id}/wages:
     parameters:
@@ -1899,6 +1929,23 @@ definitions:
         type: number
       version:
         type: string
+
+  EmployeeAchAccountPutItem:
+    type: object
+    properties:
+      routing:
+        type: string
+      account:
+        type: string
+      percent:
+        type: string
+      amount:
+        type: string
+      savings:
+        type: integer
+        enum:
+          - 0
+          - 1
 
   EmployeeAchAccountItem:
     type: object
