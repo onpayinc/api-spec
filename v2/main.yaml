@@ -375,6 +375,8 @@ paths:
           schema:
             type: object
             properties:
+              worksite_id:
+                type: integer
               federal_status:
                 type: integer
               federal_allowances:
@@ -415,6 +417,8 @@ paths:
           schema:
             type: object
             properties:
+              worksite_id:
+                type: integer
               federal_status:
                 type: integer
               federal_allowances:
@@ -450,6 +454,8 @@ paths:
           schema:
             type: object
             properties:
+              worksite_id:
+                type: integer
               federal_status:
                 type: integer
               federal_allowances:
