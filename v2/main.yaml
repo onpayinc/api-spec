@@ -158,6 +158,65 @@ paths:
                 type: array
                 items:
                   $ref: '#/definitions/EmployeeDeductionItem'
+              actions_pending_approval:
+                type: array
+                  items:
+                    type: object
+                    properties:
+                      verb:
+                        type: string
+                      effective_date:
+                        type: string
+                        format: ISO
+                      requested_date:
+                        type: string
+                        format: ISO
+                      body:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                          employee_id:
+                            type: integer
+                          employee_number:
+                            type: string
+                          deduction_type:
+                            $ref: '#/definitions/DeductionType'
+                          deduction_id:
+                            type: integer
+                          percent:
+                            type: number
+                          annual_limit:
+                            type: number
+                          amount:
+                            type: number
+                          override_amount:
+                            type: number
+                          active:
+                            type: boolean
+                          ach_active:
+                            type: boolean
+                          routing:
+                            type: integer
+                          account:
+                            type: integer
+                          savings:
+                            type: boolean
+                          memo:
+                            type: string
+                          include_benefit_amount_in_ach:
+                            type: boolean
+                          override_company_benefit_amount:
+                            type: number
+                          lifetime_limit:
+                            type: number
+                          requested_date:
+                            type: string
+                            format: ISO
+                          effective_date:
+                            type: string
+                            format: ISO
+
         default:
           description: 'Bad Request'
           schema:
@@ -202,6 +261,90 @@ paths:
 
       description: |
         Insert deduction batch for an employee by employee ID and deduction ID
+
+      responses:
+        200:
+          description: Sucessful Response
+          schema:
+            $ref: '#/definitions/InsertSuccessful'
+
+  /employees/{employee_id}/deductions/{deduction_id}/schedule:
+    parameters:
+      - name: employee_id
+        type: integer
+        in: path
+        required: true
+      - name: deduction_id
+        type: integer
+        in: path
+        required: true
+
+    post:
+      tags:
+        - Employees
+        - Deductions
+      security:
+       - OAuth2: [Owner, Approver]
+      description: |
+        Submit a scheduled change to a deduction batch for an employee by employee ID and deduction ID
+      parameters:
+        - name: properties
+          schema:
+            type: object
+            properties:
+              verb:
+                type: string
+              effective_date:
+                type: string
+                format: ISO
+              requested_date:
+                type: string
+                format: ISO
+              body:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  employee_id:
+                    type: integer
+                  employee_number:
+                    type: string
+                  deduction_type:
+                    $ref: '#/definitions/DeductionType'
+                  deduction_id:
+                    type: integer
+                  percent:
+                    type: number
+                  annual_limit:
+                    type: number
+                  amount:
+                    type: number
+                  override_amount:
+                    type: number
+                  active:
+                    type: boolean
+                  ach_active:
+                    type: boolean
+                  routing:
+                    type: integer
+                  account:
+                    type: integer
+                  savings:
+                    type: boolean
+                  memo:
+                    type: string
+                  include_benefit_amount_in_ach:
+                    type: boolean
+                  override_company_benefit_amount:
+                    type: number
+                  lifetime_limit:
+                    type: number
+                  requested_date:
+                    type: string
+                    format: ISO
+                  effective_date:
+                    type: string
+                    format: ISO
 
       responses:
         200:
@@ -282,6 +425,41 @@ paths:
                 type: array
                 items:
                   $ref: '#/definitions/PayItem'
+              actions_pending_approval:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    verb:
+                      type: string
+                    effective_date:
+                      type: string
+                      format: ISO
+                    requested_date:
+                      type: string
+                      format: ISO
+                    body:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        pay_type_id:
+                          type: integer
+                        employee_id:
+                          type: integer
+                        hours:
+                          type: number
+                        rate:
+                          type: number
+                        override_amount:
+                          type: number
+                        requested_date:
+                          type: string
+                          format: ISO
+                        effective_date:
+                          type: string
+                          format: ISO
+
               version:
                 type: string
 
@@ -315,6 +493,64 @@ paths:
                   $ref: '#/definitions/PayItem'
               version:
                 type: string
+
+  /employees/{employee_id}/wages/schedule:
+    parameters:
+      - name: employee_id
+        type: integer
+        required: true
+        in: path
+    post:
+      tags:
+        - Employees
+      security:
+       - OAuth2: [Owner, Approver]
+      description: |
+        Schedule changes to employee wages for approval.
+      parameters:
+        - name: parameters
+          schema:
+            type: object
+            required: [verb, effective_date, body]
+            properties:
+              verb:
+                type: string
+              effective_date:
+                type: string
+                format: ISO
+              body:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  pay_type_id:
+                    type: integer
+                  employee_id:
+                    type: integer
+                  hours:
+                    type: number
+                  rate:
+                    type: number
+                  override_amount:
+                    type: number
+                  requested_date:
+                    type: string
+                    format: ISO
+                  effective_date:
+                    type: string
+                    format: ISO
+          in: body
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            $ref: '#/definitions/Employee'
+
+      responses:
+        200:
+          description: Sucessful Response
+          schema:
+            $ref: '#/definitions/InsertSuccessful'
 
   /employees/{employee_id}/leave:
     parameters:
