@@ -542,12 +542,6 @@ paths:
           in: body
       responses:
         200:
-          description: Successful Response
-          schema:
-            $ref: '#/definitions/Employee'
-
-      responses:
-        200:
           description: Sucessful Response
           schema:
             $ref: '#/definitions/InsertSuccessful'
