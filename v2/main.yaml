@@ -288,7 +288,7 @@ paths:
       description: |
         Submit a scheduled change to a deduction batch for an employee by employee ID and deduction ID
       parameters:
-        - name: properties
+        - name: parameters
           schema:
             type: object
             properties:
