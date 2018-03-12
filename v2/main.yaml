@@ -507,7 +507,12 @@ paths:
                       type: string
                       format: ISO
                     body:
-                      $ref: '#/definitions/PayItem'
+                      type: object
+                      properties:
+                        pay_items:
+                          type: array
+                          items:
+                            $ref: '#/definitions/PayItem'
                     version:
                       type: string
               version:
@@ -579,7 +584,12 @@ paths:
                   type: string
                   format: ISO
                 body:
-                  $ref: '#/definitions/PayItem'
+                  type: object
+                  properties:
+                    pay_items:
+                      type: array
+                      items:
+                        $ref: '#/definitions/PayItem'
     post:
       tags:
         - Employees
@@ -601,10 +611,12 @@ paths:
                 type: string
                 format: ISO
               body:
-                pay_items:
-                  type: array
-                  items:
-                    $ref: '#/definitions/PayItem'
+                type: object
+                properties:
+                  pay_items:
+                    type: array
+                    items:
+                      $ref: '#/definitions/PayItem'
               version:
                 type: string
           in: body
