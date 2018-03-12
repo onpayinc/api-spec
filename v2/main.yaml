@@ -345,7 +345,7 @@ paths:
                   effective_date:
                     type: string
                     format: ISO
-
+          in: body
       responses:
         200:
           description: Sucessful Response
