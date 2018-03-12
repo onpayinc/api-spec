@@ -165,6 +165,12 @@ paths:
                   properties:
                     verb:
                       type: string
+                    route:
+                      type: string
+                    options:
+                      type: array
+                    description:
+                      type: string
                     effective_date:
                       type: string
                       format: ISO
@@ -172,9 +178,7 @@ paths:
                       type: string
                       format: ISO
                     body:
-                      type: array
-                      items:
-                        $ref: '#/definitions/EmployeeDeductionItem'
+                      $ref: '#/definitions/EmployeeDeductionItem'
 
         default:
           description: 'Bad Request'
@@ -248,19 +252,24 @@ paths:
         200:
           description: Successful Response
           schema:
-            type: object
-            properties:
-              verb:
-                type: string
-              requested_date:
-                type: string
-                format: ISO
-              effective_date:
-                type: string
-                format: ISO
-              body:
-                type: array
-                items:
+            type: array
+            items:
+              properties:
+                verb:
+                  type: string
+                route:
+                  type: string
+                options:
+                  type: array
+                description:
+                  type: string
+                requested_date:
+                  type: string
+                  format: ISO
+                effective_date:
+                  type: string
+                  format: ISO
+                body:
                   $ref: '#/definitions/EmployeeDeductionItem'
     post:
       tags:
@@ -278,13 +287,15 @@ paths:
             properties:
               verb:
                 type: string
+              options:
+                type: array
               effective_date:
                 type: string
                 format: ISO
               body:
-                type: array
-                items:
-                  $ref: '#/definitions/EmployeeDeductionItem'
+                $ref: '#/definitions/EmployeeDeductionItem'
+              version:
+                type: string
           in: body
       responses:
         200:
@@ -372,6 +383,12 @@ paths:
                   properties:
                     verb:
                       type: string
+                    route:
+                      type: string
+                    options:
+                      type: array
+                    description:
+                      type: string
                     effective_date:
                       type: string
                       format: ISO
@@ -379,10 +396,9 @@ paths:
                       type: string
                       format: ISO
                     body:
-                      type: array
-                      items:
-                        $ref: '#/definitions/PayItem'
-
+                      $ref: '#/definitions/PayItem'
+                    version:
+                      type: string
               version:
                 type: string
 
@@ -433,19 +449,25 @@ paths:
         200:
           description: Successful Response
           schema:
-            type: object
-            properties:
-              verb:
-                type: string
-              requested_date:
-                type: string
-                format: ISO
-              effective_date:
-                type: string
-                format: ISO
-              body:
-                type: array
-                items:
+            type: array
+            items:
+              type: object
+              properties:
+                verb:
+                  type: string
+                route:
+                  type: string
+                options:
+                  type: array
+                description:
+                  type: string
+                requested_date:
+                  type: string
+                  format: ISO
+                effective_date:
+                  type: string
+                  format: ISO
+                body:
                   $ref: '#/definitions/PayItem'
     post:
       tags:
@@ -462,13 +484,13 @@ paths:
             properties:
               verb:
                 type: string
+              options:
+                type: array
               effective_date:
                 type: string
                 format: ISO
               body:
-                type: array
-                items:
-                  $ref: '#/definitions/PayItem'
+                $ref: '#/definitions/PayItem'
           in: body
       responses:
         200:
@@ -1258,6 +1280,39 @@ paths:
           schema:
             $ref: '#/definitions/TaxFields'
     patch:
+      tags:
+        - Company
+      parameters:
+        - name: properties
+          description: "JSON Merge Patch [RFC 7396]"
+          schema:
+            $ref: '#/definitions/TaxFields'
+          in: body
+      security:
+        - OAuth2: [Owner, Approver]
+        #- Bearer: []
+      responses:
+        200:
+          description: |
+            Sucessful Response
+          schema:
+            $ref: '#/definitions/PatchSuccessful'
+
+  /company/unproccessed-hours:
+    get:
+      tags:
+        - Company
+      security:
+        - OAuth2: [Owner, Approver]
+        #- Bearer: []
+      description: Get unproccessed hours
+      responses:
+        200:
+          description: |
+            Sucessful Response
+          schema:
+            $ref: '#/definitions/TaxFields'
+    put:
       tags:
         - Company
       parameters:
