@@ -178,7 +178,44 @@ paths:
                       type: string
                       format: ISO
                     body:
-                      $ref: '#/definitions/EmployeeDeductionItem'
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        employee_id:
+                          type: integer
+                        employee_number:
+                          type: string
+                        deduction_type:
+                          $ref: '#/definitions/DeductionType'
+                        deduction_id:
+                          type: integer
+                        percent:
+                          type: number
+                        annual_limit:
+                          type: number
+                        amount:
+                          type: number
+                        override_amount:
+                          type: number
+                        active:
+                          type: boolean
+                        ach_active:
+                          type: boolean
+                        routing:
+                          type: integer
+                        account:
+                          type: integer
+                        savings:
+                          type: boolean
+                        memo:
+                          type: string
+                        include_benefit_amount_in_ach:
+                          type: boolean
+                        override_company_benefit_amount:
+                          type: number
+                        lifetime_limit:
+                          type: number
 
         default:
           description: 'Bad Request'
@@ -257,8 +294,6 @@ paths:
               properties:
                 verb:
                   type: string
-                route:
-                  type: string
                 options:
                   type: array
                 description:
@@ -270,7 +305,46 @@ paths:
                   type: string
                   format: ISO
                 body:
-                  $ref: '#/definitions/EmployeeDeductionItem'
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    employee_id:
+                      type: integer
+                    employee_number:
+                      type: string
+                    deduction_type:
+                      $ref: '#/definitions/DeductionType'
+                    deduction_id:
+                      type: integer
+                    percent:
+                      type: number
+                    annual_limit:
+                      type: number
+                    amount:
+                      type: number
+                    override_amount:
+                      type: number
+                    active:
+                      type: boolean
+                    ach_active:
+                      type: boolean
+                    routing:
+                      type: integer
+                    account:
+                      type: integer
+                    savings:
+                      type: boolean
+                    memo:
+                      type: string
+                    include_benefit_amount_in_ach:
+                      type: boolean
+                    override_company_benefit_amount:
+                      type: number
+                    lifetime_limit:
+                      type: number
+                requested_version:
+                  type: string
     post:
       tags:
         - Employees
@@ -293,7 +367,44 @@ paths:
                 type: string
                 format: ISO
               body:
-                $ref: '#/definitions/EmployeeDeductionItem'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  employee_id:
+                    type: integer
+                  employee_number:
+                    type: string
+                  deduction_type:
+                    $ref: '#/definitions/DeductionType'
+                  deduction_id:
+                    type: integer
+                  percent:
+                    type: number
+                  annual_limit:
+                    type: number
+                  amount:
+                    type: number
+                  override_amount:
+                    type: number
+                  active:
+                    type: boolean
+                  ach_active:
+                    type: boolean
+                  routing:
+                    type: integer
+                  account:
+                    type: integer
+                  savings:
+                    type: boolean
+                  memo:
+                    type: string
+                  include_benefit_amount_in_ach:
+                    type: boolean
+                  override_company_benefit_amount:
+                    type: number
+                  lifetime_limit:
+                    type: number
               version:
                 type: string
           in: body
@@ -490,7 +601,12 @@ paths:
                 type: string
                 format: ISO
               body:
-                $ref: '#/definitions/PayItem'
+                pay_items:
+                  type: array
+                  items:
+                    $ref: '#/definitions/PayItem'
+              version:
+                type: string
           in: body
       responses:
         200:
