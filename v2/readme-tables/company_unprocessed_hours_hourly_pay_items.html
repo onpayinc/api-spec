@@ -53,27 +53,13 @@
         <tbody>
             <tr>
                 <td data-title="Property" class="code-style">
-                    pay_schedule_id
-                </td>
-                <td data-title="Value">
-                    integer
-                </td>
-                <td data-title="Description">
-                    The id of the pay schedule to which the hours apply.
-                </td>
-                <td data-title="Notes">
-
-                </td>
-            </tr>
-            <tr>
-                <td data-title="Property" class="code-style">
-                    period_start_date
+                    name
                 </td>
                 <td data-title="Value">
                     string
                 </td>
                 <td data-title="Description">
-                    The start date of the pay period to which the hours apply.
+                    The name of the pay item.
                 </td>
                 <td data-title="Notes">
 
@@ -81,27 +67,37 @@
             </tr>
             <tr>
                 <td data-title="Property" class="code-style">
-                    period_end_date
+                    pay_type_id
+                </td>
+                <td data-title="Value">
+                    enum
+                </td>
+                <td data-title="Description">
+                    The type of the pay item.
+                    <br/>
+                    <br/>1 - Regular
+                    <br/>2 - Overtime
+                    <br/>3 - Vacation
+                    <br/>5 - Sick
+                    <br/>6 - Holiday
+                    <br/>7 - Bonus
+                    <br/>16 - PTO
+                    <br/>22 - Double Overtime
+                    <br/>106 - Commissions
+                </td>
+                <td data-title="Notes">
+
+                </td>
+            </tr>
+            <tr>
+                <td data-title="Property" class="code-style">
+                    hours
                 </td>
                 <td data-title="Value">
                     string
                 </td>
                 <td data-title="Description">
-                    The end date of the pay period to which the hours apply.
-                </td>
-                <td data-title="Notes">
-
-                </td>
-            </tr>
-            <tr>
-                <td data-title="Property" class="code-style">
-                    employee_hours
-                </td>
-                <td data-title="Value">
-                    array
-                </td>
-                <td data-title="Description">
-                    The collection of employees for the pay period.
+                    The hours which apply to the employee pay item.
                 </td>
                 <td data-title="Notes">
 

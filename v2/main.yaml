@@ -1426,6 +1426,93 @@ paths:
           schema:
             $ref: '#/definitions/PatchSuccessful'
 
+  /company/unprocessed-hours:
+    get:
+      tags:
+        - Company
+      security:
+        - OAuth2: [Owner, Approver]
+        #- Bearer: []
+      description: Get unproccessed hours
+      responses:
+        200:
+          description: |
+            Sucessful Response
+          schema:
+            type: object
+            properties:
+              pay_schedule_id:
+                type: integer
+              period_start_date:
+                type: string
+                format: ISO
+              period_end_date:
+                type: string
+                format: ISO
+              employee_hours:
+               type: array
+               items:
+                 type: object
+                 properties:
+                   employee_id:
+                     type: integer
+                   hourly_pay_items:
+                     type: array
+                     items:
+                       type: object
+                       properties:
+                         name:
+                           type: string
+                         pay_type_id:
+                           type: integer
+                         hours:
+                           type: number
+    put:
+      tags:
+        - Company
+      parameters:
+        - name: properties
+          schema:
+            type: object
+            required: [pay_schedule_id, period_start_date, period_end_date]
+            properties:
+              pay_schedule_id:
+                type: integer
+              period_start_date:
+                type: string
+                format: ISO
+              period_end_date:
+                type: string
+                format: ISO
+              employee_hours:
+               type: array
+               items:
+                 type: object
+                 properties:
+                   employee_id:
+                     type: integer
+                   hourly_pay_items:
+                     type: array
+                     items:
+                       type: object
+                       properties:
+                         name:
+                           type: string
+                         pay_type_id:
+                           type: integer
+                         hours:
+                           type: number
+          in: body
+      security:
+        - OAuth2: [Owner, Approver]
+        #- Bearer: []
+      responses:
+        200:
+          description: |
+            Sucessful Response
+          schema:
+            $ref: '#/definitions/PatchSuccessful'
+
   /user:
     get:
       tags:
