@@ -1853,11 +1853,6 @@ definitions:
             enum:
               - 3
               - 4
-          use_401k_catchup:
-            type: integer
-            enum:
-              - 0
-              - 1
           type:
             type: integer
             enum:
