@@ -1426,39 +1426,6 @@ paths:
           schema:
             $ref: '#/definitions/PatchSuccessful'
 
-  /company/unproccessed-hours:
-    get:
-      tags:
-        - Company
-      security:
-        - OAuth2: [Owner, Approver]
-        #- Bearer: []
-      description: Get unproccessed hours
-      responses:
-        200:
-          description: |
-            Sucessful Response
-          schema:
-            $ref: '#/definitions/TaxFields'
-    put:
-      tags:
-        - Company
-      parameters:
-        - name: properties
-          description: "JSON Merge Patch [RFC 7396]"
-          schema:
-            $ref: '#/definitions/TaxFields'
-          in: body
-      security:
-        - OAuth2: [Owner, Approver]
-        #- Bearer: []
-      responses:
-        200:
-          description: |
-            Sucessful Response
-          schema:
-            $ref: '#/definitions/PatchSuccessful'
-
   /user:
     get:
       tags:
@@ -1784,6 +1751,8 @@ definitions:
         format: ISO
       supplemental_calculation_method:
         type: integer
+      use_401k_catchup:
+        type: integer
       date_added:
         type: string
         format: ISO
@@ -1884,6 +1853,11 @@ definitions:
             enum:
               - 3
               - 4
+          use_401k_catchup:
+            type: integer
+            enum:
+              - 0
+              - 1
           type:
             type: integer
             enum:
