@@ -795,6 +795,65 @@ paths:
               state_resident:
                 type: boolean
 
+  /employees/{employee_id}/tax-fields/worksite:
+    parameters:
+      - name: employee_id
+        type: integer
+        required: true
+        in: path
+    patch:
+      tags:
+        - Employees
+      security:
+        - OAuth2: [Owner, Approver]
+      description: Update employee worksite id
+      parameters:
+        - name: parameters
+          schema:
+            type: object
+            properties:
+              worksite_id:
+                type: integer
+              version:
+                type: string
+          in: body
+      responses:
+        200:
+          description: Sucessful Response
+          schema:
+            type: object
+            properties:
+              worksite_id:
+                type: integer
+              federal_status:
+                type: integer
+              federal_allowances:
+                type: integer
+              fica_exempt:
+                type: boolean
+              fit_exempt:
+                type: boolean
+              fit_additional_amount:
+                type: integer
+              work_location_display_fields:
+                type: object
+              state_misc_1_value:
+                type: string
+              state_misc_3_value:
+                type: string
+              state_misc_2_value:
+                type: string
+              sit_additional_amount:
+                type: integer
+              sdi_exempt:
+                type: boolean
+              state_misc_4_value:
+                type: string
+              sit_exempt:
+                type: boolean
+              state_resident:
+                type: boolean
+
   /employees/{employee_id}/termination:
     parameters:
       - name: employee_id
