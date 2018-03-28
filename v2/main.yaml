@@ -1580,12 +1580,10 @@ paths:
         in: path
       - name: number_of_periods
         type: string
-        description: "Default 12"
         required: false
         in: path
       - name: first_date
         type: string
-        description: "Default now"
         required: false
         in: path
     get:
