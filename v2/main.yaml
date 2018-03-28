@@ -1573,6 +1573,21 @@ paths:
             $ref: '#/definitions/PatchSuccessful'
 
   /company/pay-schedule-dates:
+    parameters:
+      - name: pay_schedule_id
+        type: integer
+        required: true
+        in: path
+      - name: number_of_periods
+        type: string
+        description: "Default 12"
+        required: false
+        in: path
+      - name: first_date
+        type: string
+        description: "Default now"
+        required: false
+        in: path
     get:
       tags:
         - Company
@@ -1589,9 +1604,15 @@ paths:
             properties:
               pay_schedule_id:
                 type: integer
-              number_of_periods:
-                type: integer
-              first_date:
+              check_date:
+                type: string
+              period_start:
+                type: string
+              period_end:
+                type: string
+              effective_date:
+                type: string
+              submission_deadline:
                 type: string
 
   /user:

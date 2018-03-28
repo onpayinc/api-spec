@@ -47,7 +47,7 @@
             <th>Property</th>
             <th>Value</th>
             <th>Description</th>
-            <th>readOnly</th>
+            <th>Required</th>
         </tr>
         </thead>
         <tbody>
@@ -62,18 +62,18 @@
                     The id of pay schedule.
                 </td>
                 <td data-title="Notes">
-
+                    x
                 </td>
             </tr>
             <tr>
                 <td data-title="Property" class="code-style">
-                    check_date
+                    number_of_periods
                 </td>
                 <td data-title="Value">
-                    string
+                    integer
                 </td>
                 <td data-title="Description">
-                    The scheduled check date for the pay period.
+                    The number of pay periods to return;
                 </td>
                 <td data-title="Notes">
 
@@ -81,55 +81,13 @@
             </tr>
             <tr>
                 <td data-title="Property" class="code-style">
-                    period_start
+                    first_date
                 </td>
                 <td data-title="Value">
                     string
                 </td>
                 <td data-title="Description">
-                    The start date of the pay period.
-                </td>
-                <td data-title="Notes">
-
-                </td>
-            </tr>
-            <tr>
-                <td data-title="Property" class="code-style">
-                    period_end
-                </td>
-                <td data-title="Value">
-                    string
-                </td>
-                <td data-title="Description">
-                    The end date of the pay period.
-                </td>
-                <td data-title="Notes">
-
-                </td>
-            </tr>
-            <tr>
-                <td data-title="Property" class="code-style">
-                    effective_date
-                </td>
-                <td data-title="Value">
-                    string
-                </td>
-                <td data-title="Description">
-                    The effective check date for the pay period.
-                </td>
-                <td data-title="Notes">
-
-                </td>
-            </tr>
-            <tr>
-                <td data-title="Property" class="code-style">
-                    submission_deadline
-                </td>
-                <td data-title="Value">
-                    string
-                </td>
-                <td data-title="Description">
-                    The last date which the payroll can be run for the effective check date.
+                    The date from which to calculate the first check date in the list.
                 </td>
                 <td data-title="Notes">
 
