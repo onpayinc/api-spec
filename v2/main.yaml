@@ -1583,15 +1583,15 @@ paths:
       - name: pay_schedule_id
         type: integer
         required: true
-        in: path
+        in: query
       - name: number_of_periods
         type: string
         required: false
-        in: path
+        in: query
       - name: first_date
         type: string
         required: false
-        in: path
+        in: query
       description: Get important dates for a pay schedule
       responses:
         200:
