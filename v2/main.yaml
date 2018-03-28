@@ -1579,20 +1579,21 @@ paths:
       security:
         - OAuth2: [Owner, Approver, Controller, Manager]
         #- Bearer: []
-    parameters:
-      - name: pay_schedule_id
-        type: integer
-        required: true
-        in: query
-      - name: number_of_periods
-        type: string
-        required: false
-        in: query
-      - name: first_date
-        type: string
-        required: false
-        in: query
-      description: Get important dates for a pay schedule
+      parameters:
+        - name: pay_schedule_id
+          type: integer
+          required: true
+          in: query
+        - name: number_of_periods
+          type: string
+          required: false
+          in: query
+        - name: first_date
+          type: string
+          required: false
+          in: query
+      description: |
+        Get important dates for a pay schedule
       responses:
         200:
           description: |
