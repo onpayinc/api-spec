@@ -1572,6 +1572,28 @@ paths:
           schema:
             $ref: '#/definitions/PatchSuccessful'
 
+  /company/pay-schedule-dates:
+    get:
+      tags:
+        - Company
+      security:
+        - OAuth2: [Owner, Approver]
+        #- Bearer: []
+      description: Get important dates for a pay schedule
+      responses:
+        200:
+          description: |
+            Sucessful Response
+          schema:
+            type: object
+            properties:
+              pay_schedule_id:
+                type: integer
+              number_of_periods:
+                type: integer
+              first_date:
+                type: string
+
   /user:
     get:
       tags:
