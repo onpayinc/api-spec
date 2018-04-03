@@ -883,6 +883,35 @@ paths:
           schema:
             $ref: '#/definitions/Employee'
 
+  /employees/{employee_id}/rehire:
+    parameters:
+      - name: employee_id
+        type: integer
+        required: true
+        in: path
+    post:
+      tags:
+        - Employees
+      security:
+        - OAuth2: [Owner, Approver, Controller, Manager]
+      description: Rehire employee
+      parameters:
+        - name: parameters
+          schema:
+            type: object
+            required: [rehire_date, version]
+            properties:
+              rehire_date:
+                type: string
+              version:
+                type: string
+          in: body
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            $ref: '#/definitions/Employee'
+
   /employees/recent-notes-and-comments:
     get:
       tags:
