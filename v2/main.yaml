@@ -2391,7 +2391,7 @@ definitions:
       - 25
       - 102
 
-  IncludedIn401kReportsEnum:
+  DeductionIncludedIn401kReports:
     type: string
     description: |
       L For Standard Deductions: include as loan in 401k reports
@@ -2416,7 +2416,7 @@ definitions:
       annual_limit:
         type: number
       included_in_401k_reports:
-        type: enum
+        $ref: '#/definitions/DeductionIncludedIn401kReports'
       company_match_percent:
         type: number
       company_match_percent_of_gross:
