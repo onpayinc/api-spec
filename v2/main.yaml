@@ -1675,7 +1675,6 @@ paths:
           in: query
           required: false
           type: string
-          format: csv
         - name: position_id
           in: query
           required: false
@@ -1723,7 +1722,6 @@ paths:
           in: query
           required: false
           type: string
-          format: csv
         - name: position_id
           in: query
           required: false
@@ -2677,6 +2675,17 @@ definitions:
 
   DisplayFieldsObject:
     type: object
+    properties:
+      state_misc_1_value:
+        type: string
+      state_misc_2_value:
+        type: string
+      sit_additional_amount:
+        type: integer
+      sit_exempt:
+        type: boolean
+      state_resident:
+        type: boolean
 
   PatchSuccessful:
     type: object
