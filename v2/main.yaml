@@ -688,7 +688,7 @@ paths:
               fit_additional_amount:
                 type: integer
               work_location_display_fields:
-                type: object
+                $ref: '#/definitions/StateDisplayFieldsObject'
               state_misc_1_value:
                 type: string
               state_misc_3_value:
@@ -730,7 +730,7 @@ paths:
               fit_additional_amount:
                 type: integer
               work_location_display_fields:
-                type: object
+                $ref: '#/definitions/StateDisplayFieldsObject'
               state_misc_1_value:
                 type: string
               state_misc_3_value:
@@ -767,7 +767,7 @@ paths:
               fit_additional_amount:
                 type: integer
               work_location_display_fields:
-                type: object
+                $ref: '#/definitions/StateDisplayFieldsObject'
               state_misc_1_value:
                 type: string
               state_misc_3_value:
@@ -826,7 +826,7 @@ paths:
               fit_additional_amount:
                 type: integer
               work_location_display_fields:
-                type: object
+                $ref: '#/definitions/StateDisplayFieldsObject'
               state_misc_1_value:
                 type: string
               state_misc_3_value:
