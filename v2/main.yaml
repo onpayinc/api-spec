@@ -1774,6 +1774,59 @@ paths:
             items:
               $ref: '#/definitions/ApprovedPayRunsItem'
 
+  /reports/retirement-summary:
+    get:
+      tags:
+        - Pay-runs
+      security:
+        - OAuth2: [Owner, Approver]
+        #- Bearer: []
+      parameters:
+        - name: company_id
+          in: query
+          required: true
+          type: integer
+        - name: from
+          in: query
+          required: true
+          type: string
+        - name: to
+          in: query
+          required: true
+          type: string
+        - name: limit
+          in: query
+          required: true
+          type: integer
+        - name: start
+          in: query
+          required: true
+          type: integer
+        - name: employee_ids
+          in: query
+          required: false
+          type: string
+        - name: position_id
+          in: query
+          required: false
+          type: integer
+        - name: department_id
+          in: query
+          required: false
+          type: integer
+        - name: location_id
+          in: query
+          required: false
+          type: integer
+      responses:
+        200:
+          description: |
+            Sucessful Response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/RetirementSummaryItem'
+
 definitions:
   Company:
     type: object
@@ -2719,4 +2772,55 @@ definitions:
         description: "error"
       message:
         type: string
-        description: "error message"       
+        description: "error message"
+
+  RetirementSummaryItem:
+    type: object
+    properties:
+      employee_id:
+        type: integer
+      to:
+        type: string
+      from:
+        type: string
+      wages_in_retirement_calculation:
+        type: number
+      employee_401k_loan_amount:
+        type: number
+      employee_deferral_amount:
+        type: number
+      employer_retirement_contribution:
+        type: number
+      total_retirement_contribution:
+        type: number
+      employee_pretax_deferral_amount:
+        type: number
+      employee_roth_deferral_amount:
+        type: number
+      simple_ira_amount:
+        type: number
+      safe_harbor_deferral_amount:
+        type: number
+      safe_harbor_nonelective_contribution:
+        type: number
+      safe_harbor_employer_contribution:
+        type: number
+      deductions_list:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+            deduction_type:
+              $ref: '#/definitions/DeductionType'
+            amount:
+              type: number
+            benefit_name:
+              type: string
+            benefit_amount:
+              type: number
+            nonelective_portion_of_benefit:
+              type: number
