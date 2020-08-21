@@ -240,6 +240,39 @@ paths:
         #- Bearer: []
       description: |
         Update an employee deduction batch by employee ID and deduction ID
+      parameters:
+        - name: parameters
+          schema:
+            type: object
+            required: []
+            properties:
+              percent:
+                type: number
+              annual_limit:
+                type: number
+              amount:
+                type: number
+              override_amount:
+                type: number
+              active:
+                type: boolean
+              ach_active:
+                type: boolean
+              routing:
+                type: integer
+              account:
+                type: integer
+              savings:
+                type: boolean
+              memo:
+                type: string
+              include_benefit_amount_in_ach:
+                type: boolean
+              override_company_benefit_amount:
+                type: number
+              lifetime_limit:
+                type: number
+          in: body
       responses:
         200:
           description: Successful Response
@@ -259,6 +292,40 @@ paths:
 
       description: |
         Insert deduction batch for an employee by employee ID and deduction ID
+
+      parameters:
+        - name: parameters
+          schema:
+            type: object
+            required: []
+            properties:
+              percent:
+                type: number
+              annual_limit:
+                type: number
+              amount:
+                type: number
+              override_amount:
+                type: number
+              active:
+                type: boolean
+              ach_active:
+                type: boolean
+              routing:
+                type: integer
+              account:
+                type: integer
+              savings:
+                type: boolean
+              memo:
+                type: string
+              include_benefit_amount_in_ach:
+                type: boolean
+              override_company_benefit_amount:
+                type: number
+              lifetime_limit:
+                type: number
+          in: body
 
       responses:
         200:
