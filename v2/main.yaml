@@ -1017,6 +1017,28 @@ paths:
           schema:
             $ref: '#/definitions/ErrorBadRequest'
 
+  /company/pay-schedules:
+    get:
+      tags:
+      - Company
+      security:
+      - OAuth2: [Owner, Approver]
+      #- Bearer: []
+      description: |
+        list pay schedules for company
+
+      responses:
+        200:
+          description: successful response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/PaySchedule'
+        default:
+          description: 'Bad Request'
+          schema:
+            $ref: '#/definitions/ErrorBadRequest'
+
   /company/deductions:
     get:
       tags:
@@ -1050,39 +1072,38 @@ paths:
       description: |
         create a new deduction
       parameters:
-        - name: properties
-          description: ""
+        - name: parameters
           schema:
-            $ref: '#/definitions/EmployeeDeductionItem'
+            type: object
+            properties:
+              name:
+                type: string
+              type:
+                $ref: '#/definitions/DeductionType'
+              company_match_percent_of_gross:
+                type: number
+              company_match_percent_of_gross_2:
+                type: number
+              company_match_percent:
+                type: number
+              company_match_percent_2:
+                type: number
+              annual_limit:
+                type: number
+              non_elective_percent_of_gross:
+                type: number
+              ignore_deferral:
+                type: boolean
+              grouping_id:
+                type: integer
+              included_in_401k_reports:
+                $ref: '#/definitions/DeductionIncludedIn401kReports'
           in: body
-
       responses:
         200:
           description: successful response
           schema:
             $ref: '#/definitions/InsertSuccessful'
-        default:
-          description: 'Bad Request'
-          schema:
-            $ref: '#/definitions/ErrorBadRequest'
-
-  /company/pay-schedules:
-    get:
-      tags:
-        - Company
-      security:
-        - OAuth2: [Owner, Approver]
-        #- Bearer: []
-      description: |
-        list pay schedules for company
-
-      responses:
-        200:
-          description: successful response
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/PaySchedule'
         default:
           description: 'Bad Request'
           schema:
@@ -1104,11 +1125,33 @@ paths:
       description: |
         Patch deduction
       parameters:
-        - name: properties
-          description: "JSON Merge Patch [RFC 7396]"
-          schema:
-            $ref: '#/definitions/EmployeeDeductionItem'
-          in: body
+      - name: parameters
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+            type:
+              $ref: '#/definitions/DeductionType'
+            company_match_percent_of_gross:
+              type: number
+            company_match_percent_of_gross_2:
+              type: number
+            company_match_percent:
+              type: number
+            company_match_percent_2:
+              type: number
+            annual_limit:
+              type: number
+            non_elective_percent_of_gross:
+              type: number
+            ignore_deferral:
+              type: boolean
+            grouping_id:
+              type: integer
+            included_in_401k_reports:
+              $ref: '#/definitions/DeductionIncludedIn401kReports'
+        in: body
       responses:
         200:
           description: successful response
