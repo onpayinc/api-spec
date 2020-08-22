@@ -1053,7 +1053,7 @@ paths:
         - name: properties
           description: ""
           schema:
-            $ref: '#/definitions/DeductionListItem'
+            $ref: '#/definitions/EmployeeDeductionItem'
           in: body
 
       responses:
@@ -1107,7 +1107,7 @@ paths:
         - name: properties
           description: "JSON Merge Patch [RFC 7396]"
           schema:
-            $ref: '#/definitions/DeductionListItem'
+            $ref: '#/definitions/EmployeeDeductionItem'
           in: body
       responses:
         200:
